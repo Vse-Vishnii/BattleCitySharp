@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\PlatformerWPF.csproj": {}
+    "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\BattleCitySharp.csproj": {}
   },
   "projects": {
-    "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\PlatformerWPF.csproj": {
+    "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\BattleCitySharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\PlatformerWPF.csproj",
+        "projectUniqueName": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\BattleCitySharp.csproj",
         "projectName": "BattleCitySharp",
-        "projectPath": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\PlatformerWPF.csproj",
+        "projectPath": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\BattleCitySharp.csproj",
         "packagesPath": "C:\\Users\\Lesha\\.nuget\\packages\\",
         "outputPath": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\obj\\",
         "projectStyle": "PackageReference",

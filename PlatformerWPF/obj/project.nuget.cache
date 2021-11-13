@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GL7GrRSA4ebPYA3M0l922Bjs/tiE+JbuOmx4VyOHBa/1cqJIwKFxoNHJZJDFCA1fjkSc8N3Irn+jntePTXsQBQ==",
+  "dgSpecHash": "JJ5qHIEODazHaX/J1UQ7ODz9xBg/G23hQ//hiuKFYqRhQo8BtQ01Cx2LC4t/UEKaKukWQ3I8d2V0sy0SdfRqOA==",
   "success": true,
-  "projectFilePath": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\PlatformerWPF.csproj",
+  "projectFilePath": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\BattleCitySharp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

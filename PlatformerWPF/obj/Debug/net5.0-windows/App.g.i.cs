@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using PlatformerWPF;
+using BattleCitySharp;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -33,7 +33,7 @@ using System.Windows.Shapes;
 using System.Windows.Shell;
 
 
-namespace PlatformerWPF {
+namespace BattleCitySharp {
     
     
     /// <summary>
@@ -45,7 +45,7 @@ namespace PlatformerWPF {
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.10.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.12.0")]
         public void InitializeComponent() {
             
             #line 5 "..\..\..\App.xaml"
@@ -60,9 +60,9 @@ namespace PlatformerWPF {
         /// </summary>
         [System.STAThreadAttribute()]
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.10.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.12.0")]
         public static void Main() {
-            PlatformerWPF.App app = new PlatformerWPF.App();
+            BattleCitySharp.App app = new BattleCitySharp.App();
             app.InitializeComponent();
             app.Run();
         }
