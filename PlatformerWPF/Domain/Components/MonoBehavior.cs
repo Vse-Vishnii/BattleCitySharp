@@ -8,7 +8,6 @@ namespace BattleCitySharp
 {
     public abstract class MonoBehavior
     {
-        protected GameObject GameObject { get; set; }
         protected Transform Transform { get; set; }
     }
 }
