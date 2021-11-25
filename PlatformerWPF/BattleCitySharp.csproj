@@ -8,4 +8,23 @@
     <RootNamespace>BattleCitySharp</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resourses\tank1.png" />
+    <Resource Include="Resourses\tank1.png" />
+    <None Remove="Resourses\tank2.png" />
+    <Resource Include="Resourses\tank2.png" />
+    <None Remove="Resourses\tank3.png" />
+    <Resource Include="Resourses\tank3.png" />
+    <None Remove="Resourses\tank4.png" />
+    <Resource Include="Resourses\tank4.png" />
+    <None Remove="Resourses\wall1.png" />
+    <Resource Include="Resourses\wall1.png" />
+    <None Remove="Resourses\wall2.png" />
+    <Resource Include="Resourses\wall2.png" />
+    <None Remove="Resourses\wall3.png" />
+    <Resource Include="Resourses\wall3.png" />
+    <None Remove="Resourses\wall4.png" />
+    <Resource Include="Resourses\wall4.png" />
+  </ItemGroup>
+
 </Project>
