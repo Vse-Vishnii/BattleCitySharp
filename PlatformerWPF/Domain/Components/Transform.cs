@@ -12,6 +12,6 @@ namespace BattleCitySharp
     public class Transform
     {
         public Point Position { get; set; }
-        public Rotation Rotation { get; set; }
+        public Direction Direction { get; set; }
     }
 }

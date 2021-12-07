@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class Generator : MonoBehavior
+    public class Generator : GameObject
     {
     }
 }

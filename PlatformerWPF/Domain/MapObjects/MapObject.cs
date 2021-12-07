@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class MapObject : MonoBehavior
+    public class MapObject : GameObject
     {
     }
 }

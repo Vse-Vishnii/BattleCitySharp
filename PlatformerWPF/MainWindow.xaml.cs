@@ -36,6 +36,13 @@ namespace BattleCitySharp
         public MainWindow()
         {
             InitializeComponent();
+            Canvas1.KeyUp += Canvas1_KeyDown;
+        }
+
+        private void Canvas1_KeyDown(object sender, KeyEventArgs e)
+        {
+            offset+=50;
+            Canvas.SetLeft(Tank1, offset);
         }
 
         public void Button_Click(object sender, RoutedEventArgs e)
@@ -47,21 +54,8 @@ namespace BattleCitySharp
             //Canvas1.UpdateLayout();
 
             //Инициализация объекта (Дефолтные размеры и смещения, иначе они будут NaN)
-            var tank1 = new Image();
-            tank1.Width = 70;
-            tank1.Height = 70;
-            Canvas.SetLeft(tank1, 1);
-            Canvas.SetTop(tank1, 0);
-
-            tank1.Source = BitmapFrame.Create(new Uri("pack://application:,,,/Resourses/tank1.png"));
-
-            //Поворот объекта
-            RotateTransform rotateTransform1 = new RotateTransform(0);
-
-            //Центр вращения
-            rotateTransform1.CenterX = 35;
-            rotateTransform1.CenterY = 35;
-            tank1.RenderTransform = rotateTransform1;
+            Image tank1 = DrawObject();
+            RotateObject(tank1);
 
             //Добавление объекта на холст
             Canvas1.Children.Add(tank1);
@@ -79,9 +73,32 @@ namespace BattleCitySharp
                 tank2.Height = 70;
                 Canvas.SetLeft(tank2, 0);
                 Canvas.SetTop(tank2, 210);
-                tank2.Source = BitmapFrame.Create(new Uri("pack://application:,,,/Resourses/tank1.png"));
+                tank2.Source = BitmapFrame.Create(new Uri("C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\images\\tank1.png"));
                 Canvas1.Children.Add(tank2);
             }
+        }
+
+        private static void RotateObject(Image tank1)
+        {
+            //Поворот объекта
+            RotateTransform rotateTransform1 = new RotateTransform(0);
+
+            //Центр вращения
+            rotateTransform1.CenterX = 35;
+            rotateTransform1.CenterY = 35;
+            tank1.RenderTransform = rotateTransform1;
+        }
+
+        private static Image DrawObject()
+        {
+            var tank1 = new Image();
+            tank1.Width = 70;
+            tank1.Height = 70;
+            Canvas.SetLeft(tank1, 1);
+            Canvas.SetTop(tank1, 0);
+
+            tank1.Source = BitmapFrame.Create(new Uri("C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\images\\tank1.png"));
+            return tank1;
         }
     }
 }

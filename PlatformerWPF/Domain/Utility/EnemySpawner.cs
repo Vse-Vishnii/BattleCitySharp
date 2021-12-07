@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class Enemy : GameObject
+    public class EnemySpawner : GameObject
     {
     }
 }

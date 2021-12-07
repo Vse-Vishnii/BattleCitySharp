@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class Bullet : MonoBehavior
+    public class Bullet : GameObject
     {
     }
 }

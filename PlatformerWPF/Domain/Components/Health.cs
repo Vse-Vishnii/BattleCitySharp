@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class Health : MonoBehavior
+    public class Health : GameObject
     {
     }
 }

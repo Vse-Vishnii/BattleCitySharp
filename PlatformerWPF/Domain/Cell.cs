@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class EnemySpawner : MonoBehavior
+    public struct Cell
     {
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }
