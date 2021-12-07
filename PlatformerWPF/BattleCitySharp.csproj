@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>BattleCitySharp</AssemblyName>
+    <RootNamespace>BattleCitySharp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\wall1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\wall1.png" />
+  </ItemGroup>
+
+</Project>
