@@ -21,11 +21,11 @@
             <ColumnDefinition Width="170"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button Content="Жми" Click="Button_Click" ></Button>
-        <Canvas Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black">
+        <Canvas x:Name="Canvas1" Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black">
                 
                 
                 
-            <Image x:Name="Wall1" Canvas.Left="0" Width="70" Source="Resourses/wall1.png"></Image>
+            <Image x:Name="Wall1" Canvas.Left="0" Width="70" Height="70" Canvas.Top="0" Source="Resourses/wall1.png"></Image>
             <Image x:Name="Wall2" Canvas.Left="70" Width="70" Source="Resourses/wall2.png"></Image>
             <Image x:Name="Wall3" Canvas.Left="140" Width="70" Source="Resourses/wall3.png"></Image>
             <Image x:Name="Wall4" Canvas.Left="210" Width="70" Source="Resourses/wall4.png"></Image>

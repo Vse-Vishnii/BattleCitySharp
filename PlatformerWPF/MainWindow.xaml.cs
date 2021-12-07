@@ -39,7 +39,7 @@ namespace WpfApplication1
             var tank1 = new Image();
             tank1.Width = 70;
             tank1.Height = 70;
-            Canvas.SetLeft(tank1, 71);
+            Canvas.SetLeft(tank1, 1);
             Canvas.SetTop(tank1, 0);
             
             tank1.Source = BitmapFrame.Create(new Uri("pack://application:,,,/Resourses/tank1.png"));
