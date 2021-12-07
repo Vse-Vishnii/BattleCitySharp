@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Documents\Programming\C#\Проектирование Игра\PlatformerWPF\PlatformerWPF\obj\Debug\net5.0-windows\
+C:\Documents\Programming\C#\Проектирование Игра\PlatformerWPF\PlatformerWPF\obj\Release\net5.0-windows\
 BattleCitySharp
 none
 false
-TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+TRACE;RELEASE;NET;NET5_0;NETCOREAPP
 C:\Documents\Programming\C#\Проектирование Игра\PlatformerWPF\PlatformerWPF\App.xaml
 11407045341
 
-211259554344
+201338882252
 193-1891726104
 MainWindow.xaml;
 
-False
+True
 

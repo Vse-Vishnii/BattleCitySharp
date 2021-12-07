@@ -4,12 +4,14 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace BattleCitySharp
 {
     public class Transform
     {
-        public Vector3 Position { get; set; }
-        public Quaternion Rotation { get; set; }
+        public Point Position { get; set; }
+        public Rotation Rotation { get; set; }
     }
 }
