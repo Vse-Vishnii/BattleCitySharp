@@ -13,7 +13,6 @@ namespace BattleCitySharp
             Runner.objects.Add((GameObject)original);
             Runner.objects.Select(o => { o.Collider.Collisions.Add(false); return o; });
 
-            int cellSize = 70;
 
 
 

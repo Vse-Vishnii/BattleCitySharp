@@ -20,10 +20,11 @@ namespace BattleCitySharp
 
         private Input input;
 
-        public Player(Transform transform)
+        public Player(Input input)
         {
+            this.input = input;
             slowSpeed = speed / 2;
-            tank = transform;
+            //tank = transform;
             rotateDir = transform.Direction;
         }
 
@@ -46,7 +47,7 @@ namespace BattleCitySharp
 
         private void Move(Direction moveDir, float speed)
         {
-            throw new NotImplementedException();
+            //Drawer.Move
         }
 
         public void SlowDown()

@@ -15,5 +15,15 @@ namespace BattleCitySharp
                 return 0;
             } 
         }
+
+        //static long lastTime = 0;
+        //static double GetDeltaTime()
+        //{
+        //    long now = DateTime.Now.Millisecond;
+        //    double dT = (now - lastTime) / 1000; // / 1000
+        //    lastTime = now;
+        //    Console.WriteLine(dT);
+        //    return dT;
+        //}
     }
 }
