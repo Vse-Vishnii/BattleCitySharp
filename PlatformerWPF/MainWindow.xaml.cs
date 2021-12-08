@@ -24,19 +24,54 @@ namespace BattleCitySharp
     {
         private Random random = new Random();
         private int offset = 0;
+        private double x = 0;
+        private int frames = 0;
+        private Timer timer;
+        Stopwatch watch = new Stopwatch();
 
         private Uri[] wallType = new Uri[]
         {
-            new Uri("pack://application:,,,/Resourses/wall1.png"),
-            new Uri("pack://application:,,,/Resourses/wall2.png"),
-            new Uri("pack://application:,,,/Resourses/wall3.png"),
-            new Uri("pack://application:,,,/Resourses/wall4.png")
+            new Uri("pack://application:,,,/images/wall1.png"),
+            new Uri("pack://application:,,,/images/wall2.png"),
+            new Uri("pack://application:,,,/images/wall3.png"),
+            new Uri("pack://application:,,,/images/wall4.png")
         };
 
         public MainWindow()
         {
             InitializeComponent();
-            Canvas1.KeyUp += Canvas1_KeyDown;
+            timer = new Timer(10);
+            timer.Enabled = true;
+            watch.Start();
+            timer.Elapsed += new ElapsedEventHandler(OnTimeEvent);
+        }
+
+        private void OnTimeEvent(object sender, ElapsedEventArgs e)
+        {
+            Runner.RunObjects();
+            frames++;
+            var a = 0;
+            if (watch.ElapsedMilliseconds >= 1000)
+            {
+                watch.Stop();
+                a = frames;
+            }
+
+            this.Dispatcher.Invoke(() =>
+            {
+                x++;
+                Canvas.SetLeft(Tank1, x);
+            });
+        }
+
+        static long lastTime = 0;
+        static double GetDeltaTime()
+        {
+            long now = DateTime.Now.Millisecond;
+            double dT = (now - lastTime) / 1000; // / 1000
+            lastTime = now;
+            Console.WriteLine(dT);
+            return dT;
         }
 
         private void Canvas1_KeyDown(object sender, KeyEventArgs e)
@@ -73,7 +108,7 @@ namespace BattleCitySharp
                 tank2.Height = 70;
                 Canvas.SetLeft(tank2, 0);
                 Canvas.SetTop(tank2, 210);
-                tank2.Source = BitmapFrame.Create(new Uri("C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\images\\tank1.png"));
+                tank2.Source = BitmapFrame.Create(new Uri("pack://application:,,,/images/tank1.png"));
                 Canvas1.Children.Add(tank2);
             }
         }
@@ -97,7 +132,7 @@ namespace BattleCitySharp
             Canvas.SetLeft(tank1, 1);
             Canvas.SetTop(tank1, 0);
 
-            tank1.Source = BitmapFrame.Create(new Uri("C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\images\\tank1.png"));
+            tank1.Source = BitmapFrame.Create(new Uri("pack://application:,,,/images/tank1.png"));
             return tank1;
         }
     }
