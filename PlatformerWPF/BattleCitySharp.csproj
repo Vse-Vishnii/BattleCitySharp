@@ -6,6 +6,8 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>BattleCitySharp</AssemblyName>
     <RootNamespace>BattleCitySharp</RootNamespace>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>

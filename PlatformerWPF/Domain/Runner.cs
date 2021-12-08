@@ -17,5 +17,10 @@ namespace BattleCitySharp
             //foreach (var obj in objects)
             //    obj.Update();
         }
+
+        public static void Start()
+        {
+
+        }
     }
 }

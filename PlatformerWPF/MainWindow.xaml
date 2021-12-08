@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BattleCitySharp"
-        mc:Ignorable="d"
         Title="MainWindow" ResizeMode="NoResize" Height="1000" Width="1150"
 >
     <Grid Background="#757575">

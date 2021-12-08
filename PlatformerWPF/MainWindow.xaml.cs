@@ -44,6 +44,7 @@ namespace BattleCitySharp
             timer.Enabled = true;
             watch.Start();
             timer.Elapsed += new ElapsedEventHandler(OnTimeEvent);
+
         }
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
@@ -74,7 +75,7 @@ namespace BattleCitySharp
             return dT;
         }
 
-        private void Canvas1_KeyDown(object sender, KeyEventArgs e)
+        private async void Canvas1_KeyDown(object sender, KeyEventArgs e)
         {
             offset+=50;
             Canvas.SetLeft(Tank1, offset);
@@ -90,6 +91,7 @@ namespace BattleCitySharp
 
             //Инициализация объекта (Дефолтные размеры и смещения, иначе они будут NaN)
             Image tank1 = DrawObject();
+
             RotateObject(tank1);
 
             //Добавление объекта на холст
@@ -102,14 +104,7 @@ namespace BattleCitySharp
             //Проверка на коллижн
             if (rect1.IntersectsWith(rect2))
             {
-                //Аналогичные шаги как с tank1
-                var tank2 = new Image();
-                tank2.Width = 70;
-                tank2.Height = 70;
-                Canvas.SetLeft(tank2, 0);
-                Canvas.SetTop(tank2, 210);
-                tank2.Source = BitmapFrame.Create(new Uri("pack://application:,,,/images/tank1.png"));
-                Canvas1.Children.Add(tank2);
+                
             }
         }
 
