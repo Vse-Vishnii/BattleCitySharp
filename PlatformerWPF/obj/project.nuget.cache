@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/TOsQC59MNQzdSB8t/DgKR7diE0FBTrjR/Jdu+hk3ynpuNOm4ZNkvRdsmdV18JiKrnlIvu7BM2yM+uI28EIlYw==",
+  "dgSpecHash": "JJ5qHIEODazHaX/J1UQ7ODz9xBg/G23hQ//hiuKFYqRhQo8BtQ01Cx2LC4t/UEKaKukWQ3I8d2V0sy0SdfRqOA==",
   "success": true,
-  "projectFilePath": "D:\\RiderProjects\\BattleCitySharp\\PlatformerWPF\\BattleCitySharp.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\sakan\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Documents\\Programming\\C#\\Проектирование Игра\\PlatformerWPF\\PlatformerWPF\\BattleCitySharp.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

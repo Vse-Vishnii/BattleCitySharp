@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BattleCitySharp.Domain
+namespace BattleCitySharp
 {
     public class Input
     {
@@ -17,7 +17,7 @@ namespace BattleCitySharp.Domain
 
         private Key[] keys = new[] {Key.A, Key.W, Key.S, Key.D, Key.Space};
 
-        private Dictionary<Key, bool> dict = new Dictionary<Key, bool>()
+        private Dictionary<Key, bool> keyboardPressed = new Dictionary<Key, bool>()
         {
             {Key.A, false},
             {Key.W, false},
@@ -32,9 +32,20 @@ namespace BattleCitySharp.Domain
             {
                 if (e.Key == key)
                 {
-                    dict[key] = true;
+                    keyboardPressed[key] = true;
                 }
             }
+        }
+
+        public void ResetKeys()
+        {
+            foreach (var key in keyboardPressed.Keys)
+                keyboardPressed[key] = false;
+        }
+
+        public bool GetPressedButton(Key key)
+        {
+            return keyboardPressed[key];
         }
     }
 }
