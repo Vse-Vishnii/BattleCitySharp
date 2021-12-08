@@ -20,3 +20,25 @@ C:\Documents\Programming\C#\Проектирование Игра\PlatformerWPF\
 C:\Documents\Programming\C#\Проектирование Игра\PlatformerWPF\PlatformerWPF\obj\Debug\net5.0-windows\ref\BattleCitySharp.dll
 C:\Documents\Programming\C#\Проектирование Игра\PlatformerWPF\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.pdb
 C:\Documents\Programming\C#\Проектирование Игра\PlatformerWPF\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.genruntimeconfig.cache
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\bin\Debug\net5.0-windows\BattleCitySharp.exe
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\bin\Debug\net5.0-windows\BattleCitySharp.deps.json
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\bin\Debug\net5.0-windows\BattleCitySharp.runtimeconfig.json
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\bin\Debug\net5.0-windows\BattleCitySharp.runtimeconfig.dev.json
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\bin\Debug\net5.0-windows\BattleCitySharp.dll
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\bin\Debug\net5.0-windows\ref\BattleCitySharp.dll
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\bin\Debug\net5.0-windows\BattleCitySharp.pdb
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.csproj.AssemblyReference.cache
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\MainWindow.g.cs
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\App.g.cs
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp_MarkupCompile.cache
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp_MarkupCompile.lref
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\MainWindow.baml
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.g.resources
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.GeneratedMSBuildEditorConfig.editorconfig
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.AssemblyInfoInputs.cache
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.AssemblyInfo.cs
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.csproj.CoreCompileInputs.cache
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.dll
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\ref\BattleCitySharp.dll
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.pdb
+D:\RiderProjects\BattleCitySharp\PlatformerWPF\obj\Debug\net5.0-windows\BattleCitySharp.genruntimeconfig.cache

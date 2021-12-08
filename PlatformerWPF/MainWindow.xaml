@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BattleCitySharp"
+        mc:Ignorable="d"
         Title="MainWindow" ResizeMode="NoResize" Height="1000" Width="1150"
+        KeyDown="KeyDownEvent"
 >
     <Grid Background="#757575">
         
@@ -20,6 +22,9 @@
             <ColumnDefinition Width="170"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button Content="Жми" Click="Button_Click" ></Button>
+        <DockPanel Grid.Row="0" Grid.Column="1">
+            <TextBox />
+        </DockPanel>
         <Canvas x:Name="Canvas1" Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black">
 
 

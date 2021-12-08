@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BattleCitySharp.Domain;
 
 namespace BattleCitySharp
 {
@@ -27,6 +28,7 @@ namespace BattleCitySharp
         private double x = 0;
         private int frames = 0;
         private Timer timer;
+        private Input Input = new Input();
         Stopwatch watch = new Stopwatch();
 
         private Uri[] wallType = new Uri[]
@@ -44,7 +46,6 @@ namespace BattleCitySharp
             timer.Enabled = true;
             watch.Start();
             timer.Elapsed += new ElapsedEventHandler(OnTimeEvent);
-
         }
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
@@ -129,6 +130,11 @@ namespace BattleCitySharp
 
             tank1.Source = BitmapFrame.Create(new Uri("pack://application:,,,/images/tank1.png"));
             return tank1;
+        }
+
+        private void KeyDownEvent(object sender, KeyEventArgs e)
+        {
+            Input.SetKeyEventArgs(e);
         }
     }
 }
