@@ -17,7 +17,8 @@ namespace BattleCitySharp
         private Direction moveDir;
         private Direction rotateDir;
         private float slowSpeed;
-        private int backMultiplier;
+
+        private Input input;
 
         public Player(Transform transform)
         {
@@ -26,24 +27,27 @@ namespace BattleCitySharp
             rotateDir = transform.Direction;
         }
 
-        //public override void Update()
-        //{
-        //    var vertical = Input.GetAxis("Vertical");
-        //    backMultiplier = vertical < 0 ? -1 : 1;
-        //    moveDir = tank.forward * vertical * Speed * Time.DeltaTime;
-        //    Move(moveDir);
-        //}
+        public override void Update()
+        {
+            var vertical = input.GetAxis("Vertical");
+            var horizontal = input.GetAxis("Horizontal");
+            if (vertical != 0)
+            {
+                moveDir = vertical > 0 ? Direction.Up : Direction.Down;
+                speed *= vertical;
+            }
+            else if(horizontal != 0)
+            {
+                moveDir = horizontal > 0 ? Direction.Right : Direction.Left;
+                speed *= horizontal;
+            }
+            Move(moveDir, speed);
+        }
 
-        private void Move(Direction moveDir)
+        private void Move(Direction moveDir, float speed)
         {
             throw new NotImplementedException();
         }
-
-        //public override void LateUpdate()
-        //{
-        //    var horizontal = Input.GetAxis("Horizontal") * backMultiplier;
-        //    tank.Direction = rotateDir;
-        //}
 
         public void SlowDown()
         {

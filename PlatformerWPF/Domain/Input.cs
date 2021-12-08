@@ -47,5 +47,14 @@ namespace BattleCitySharp
         {
             return keyboardPressed[key];
         }
+
+        public sbyte GetAxis(string axis)
+        {
+            if (axis == "Horizontal")
+                return (sbyte)(keyboardPressed[Key.A] ? -1 : keyboardPressed[Key.D] ? 1 : 0);
+            if (axis == "Vertical")
+                return (sbyte)(keyboardPressed[Key.S] ? -1 : keyboardPressed[Key.W] ? 1 : 0);
+            throw new ArgumentException("Неправильно указано имя оси.");
+        }
     }
 }
