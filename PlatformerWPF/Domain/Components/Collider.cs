@@ -12,14 +12,21 @@ namespace BattleCitySharp
     {
         private GameObject gameObject { get; }
         public List<bool> Collisions { get; } = new List<bool>();
+
+        public Collider(GameObject gameObject)
+        {
+            this.gameObject = gameObject;
+        }
+
         public void CheckCollision(GameObject[] gameObjects)
         {
             var graphic = gameObject.ObjectGraphic;
-            foreach(var obj in gameObjects)
-            {
-                int index = Array.IndexOf(gameObjects, obj);
-                Collisions[index] = ExecuteCollider(graphic, obj.ObjectGraphic, obj, Collisions[index]);
-            }
+            if (Collisions.Count > 0)
+                foreach(var obj in gameObjects)
+                {
+                    int index = Array.IndexOf(gameObjects, obj);
+                    Collisions[index] = ExecuteCollider(graphic, obj.ObjectGraphic, obj, Collisions[index]);
+                }
         }
 
         private bool ExecuteCollider(Image graphic, Image other, GameObject obj, bool collision)

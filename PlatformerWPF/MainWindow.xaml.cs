@@ -1,20 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BattleCitySharp;
 
 namespace BattleCitySharp
 {
@@ -23,9 +9,13 @@ namespace BattleCitySharp
     /// </summary>
     public partial class MainWindow
     {
+        int frames = 0;
+        int fps = 0;
+        DateTime lastTime = DateTime.Now;
         public MainWindow()
         {
             InitializeComponent();
+            Drawer.SetCanvas(Canvas1);
             Runner.Start();
             var timer = new Timer(10);
             timer.Enabled = true;
@@ -34,12 +24,26 @@ namespace BattleCitySharp
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
         {
+            DisplayFPS();
             Runner.RunObjects();
         }
         
         private void KeyDownEvent(object sender, KeyEventArgs e)
         {
             Runner.Inputs[0].SetKeyEventArgs(e);
+        }
+
+        private void DisplayFPS()
+        {
+            frames++;
+
+            if ((DateTime.Now - lastTime).TotalSeconds >= 1)
+            {
+                fps = frames;
+                frames = 0;
+                lastTime = DateTime.Now;
+            }
+            Dispatcher.Invoke(() => FPS.Text = fps.ToString());
         }
     }
 }

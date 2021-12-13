@@ -12,13 +12,17 @@ namespace BattleCitySharp
         public static List<GameObject> objects { get; } = new List<GameObject>();
         public static void RunObjects()
         {
-            objects.Select(o => { o.Update(); return o; })
-                .Select(o => { o.Collider.CheckCollision(objects.ToArray()); return o; })
-                .Select(o => { o.LateUpdate(); return o; });
+            foreach (var o in objects)
+                o.Update();
+            foreach (var o in objects)
+                o.Collider.CheckCollision(objects.ToArray());
+            foreach (var o in objects)
+                o.LateUpdate();
+            //objects.Select(o => { o.Update(); return o; })
+            //    .Select(o => { o.Collider.CheckCollision(objects.ToArray()); return o; })
+            //    .Select(o => { o.LateUpdate(); return o; });
             for (var i = 0; i < Inputs.Length; i++)
-                Inputs[i].ResetKeys();
-            //foreach (var obj in objects)
-            //    obj.Update();
+                Inputs[i].ResetKeys();            
         }
 
         public static void Start()

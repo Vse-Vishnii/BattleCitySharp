@@ -33,6 +33,7 @@ namespace BattleCitySharp
                 if (e.Key == key)
                 {
                     keyboardPressed[key] = true;
+                    break;
                 }
             }
         }
