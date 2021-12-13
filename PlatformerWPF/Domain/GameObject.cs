@@ -11,7 +11,7 @@ namespace BattleCitySharp
 {
     public abstract class GameObject
     {
-        public Transform Transform { get; private set; } = new Transform();
+        public Transform Transform { get; set; } = new Transform();
         public Collider Collider { get; private set; }
         public Image ObjectGraphic { get; private set; } = new Image();
 
@@ -24,7 +24,7 @@ namespace BattleCitySharp
 
         public void CreateGameObjectProperties(Cell cell, Direction rotation)
         {
-            Transform.Position = new Point(cell.X * 70, cell.Y * 70);
+            Transform.Position = new Vector2(cell.X * 70, cell.Y * 70);
             Transform.Direction = rotation;
             Collider = new Collider(this);
             Start();

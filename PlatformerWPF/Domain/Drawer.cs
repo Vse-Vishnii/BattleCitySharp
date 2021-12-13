@@ -15,6 +15,7 @@ namespace BattleCitySharp
     public class Drawer
     {
         private static Canvas canvas;
+        private static float a = 0;
 
         private static Uri[] wallType = new Uri[]
         {
@@ -53,11 +54,6 @@ namespace BattleCitySharp
 
         public static void Move(GameObject gameObject, Vector2 direction, float speed)
         {
-            var a = 0;
-            if(direction.X != 0)
-            {
-                a++;
-            }
             var image = gameObject.ObjectGraphic;
             Application.Current.Dispatcher.Invoke(() =>
             {
