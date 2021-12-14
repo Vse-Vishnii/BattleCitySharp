@@ -16,9 +16,10 @@ namespace BattleCitySharp
 
         public Vector2 ChangePosition (Vector2 direction, float speed)
         {
-            // Position.X = direction.X * speed;
-            // Position.Y = direction.X * speed;
-            return new Vector2();
+            var x = Position.X + direction.X * speed;
+            var y = Position.Y + direction.Y * speed;
+            Position = new Vector2(x, y);
+            return Position;
         }
     }
 }

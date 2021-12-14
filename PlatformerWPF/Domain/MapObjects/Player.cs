@@ -16,7 +16,6 @@ namespace BattleCitySharp
 
         private Transform tank;
         private Vector2 moveDir;
-        private Direction rotateDir;
         private float slowSpeed;
 
         private Input input;
@@ -30,11 +29,6 @@ namespace BattleCitySharp
             //tank = transform;            
         }
 
-        public override void Start()
-        {
-            rotateDir = Transform.Direction;
-        }
-
         public override void Update()
         {
             var vertical = input.GetAxis("Vertical");
@@ -45,6 +39,7 @@ namespace BattleCitySharp
 
         private void Move(Vector2 moveDir, float speed)
         {
+            Drawer.RotateObject(this);
             Drawer.Move(this, moveDir, speed);
         }
 

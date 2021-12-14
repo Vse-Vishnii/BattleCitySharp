@@ -51,14 +51,19 @@ namespace BattleCitySharp
             return tank1;
         }
 
-        public static void RotateObject(Image tank1)
+        public static void RotateObject(GameObject gameObject)
         {
-            RotateTransform rotateTransform1 = new RotateTransform(0);
+            var tank1 = gameObject.ObjectGraphic;
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                a += 90;
+                RotateTransform rotateTransform1 = new RotateTransform(a);
 
-            //Центр вращения
-            rotateTransform1.CenterX = 35;
-            rotateTransform1.CenterY = 35;
-            tank1.RenderTransform = rotateTransform1;
+                //Центр вращения
+                rotateTransform1.CenterX = 35;
+                rotateTransform1.CenterY = 35;
+                tank1.RenderTransform = rotateTransform1;
+            });  
         }
 
         public static void Move(GameObject gameObject, Vector2 direction, float speed)
