@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace BattleCitySharp
@@ -24,6 +25,8 @@ namespace BattleCitySharp
         {
             this.input = input;
             slowSpeed = speed / 2;
+            GameObjectType = ObjectType.Player;
+            //ObjectGraphic.Source = new BitmapImage(new Uri("pack://application:,,,/images/tank1.png"));
             //tank = transform;            
         }
 

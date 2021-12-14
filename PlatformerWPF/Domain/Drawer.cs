@@ -24,13 +24,21 @@ namespace BattleCitySharp
             new Uri("pack://application:,,,/images/wall3.png"),
             new Uri("pack://application:,,,/images/wall4.png")
         };
+        
+        private static Uri[] tankType = new Uri[]
+        {
+            new Uri("pack://application:,,,/images/tank1.png"),
+            //new Uri("pack://application:,,,/images/wall2.png"),
+            //new Uri("pack://application:,,,/images/wall3.png"),
+            //new Uri("pack://application:,,,/images/wall4.png")
+        };
 
         public static void SetCanvas(Canvas c)
         {
             canvas = c;
         }
 
-        public static void DrawObject()
+        public static Image DrawObject(Cell cell, ObjectType objectType)
         {
             var tank1 = new Image();
             tank1.Width = 70;
@@ -40,6 +48,7 @@ namespace BattleCitySharp
 
             tank1.Source = BitmapFrame.Create(new Uri("pack://application:,,,/images/tank1.png"));
             canvas.Children.Add(tank1);
+            return tank1;
         }
 
         public static void RotateObject(Image tank1)
@@ -55,10 +64,16 @@ namespace BattleCitySharp
         public static void Move(GameObject gameObject, Vector2 direction, float speed)
         {
             var image = gameObject.ObjectGraphic;
+
+            var pos = gameObject.Transform.ChangePosition(direction, speed);
+            // var x = gameObject.Transform.Position.X;
+            // var y = gameObject.Transform.Position.Y;
+            // gameObject.Transform.Position = new Vector2(x + direction.X * speed, y + direction.Y * speed);
+            
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Canvas.SetLeft(image, direction.X * speed);
-                Canvas.SetTop(image, direction.Y * speed);
+                Canvas.SetLeft(image, pos.X);
+                Canvas.SetTop(image, pos.Y);
             });            
         }
     }
