@@ -12,9 +12,7 @@ namespace BattleCitySharp
     public class Player : GameObject
     {
         private float speed = 5;
-        private float rotateSpeed;
 
-        private Transform tank;
         private Vector2 moveDir;
         private float slowSpeed;
 
@@ -24,9 +22,7 @@ namespace BattleCitySharp
         {
             this.input = input;
             slowSpeed = speed / 2;
-            GameObjectType = ObjectType.Player;
-            //ObjectGraphic.Source = new BitmapImage(new Uri("pack://application:,,,/images/tank1.png"));
-            //tank = transform;            
+            GameObjectType = ObjectType.Player;            
         }
 
         public override void Update()
@@ -34,13 +30,31 @@ namespace BattleCitySharp
             var vertical = input.GetAxis("Vertical");
             var horizontal = input.GetAxis("Horizontal");
             moveDir = new Vector2(horizontal, vertical);
+            Transform.Direction = GetDirection(moveDir);
             Move(moveDir, speed);
+        }
+
+        private Direction GetDirection(Vector2 moveDir)
+        {
+            var x = moveDir.X;
+            var y = moveDir.Y;
+            if (y != 0)
+                return y > 0 ? Direction.Down : Direction.Up;
+            if (x != 0)
+                return x > 0 ? Direction.Right : Direction.Left;
+            return Transform.Direction;
         }
 
         private void Move(Vector2 moveDir, float speed)
         {
-            Drawer.RotateObject(this);
-            Drawer.Move(this, moveDir, speed);
+            if (moveDir.X != 0 || moveDir.Y != 0)
+            {
+                Drawer.RotateObject(this);
+                if (Collider.CanMove(ObjectGraphic))
+                {
+                    Drawer.Move(this, moveDir, speed);
+                }                
+            }            
         }
 
         public void SlowDown()

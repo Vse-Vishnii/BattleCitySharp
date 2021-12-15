@@ -27,10 +27,21 @@ namespace BattleCitySharp
         
         private static Uri[] tankType = new Uri[]
         {
-            new Uri("pack://application:,,,/images/tank1.png"),
-            //new Uri("pack://application:,,,/images/wall2.png"),
-            //new Uri("pack://application:,,,/images/wall3.png"),
-            //new Uri("pack://application:,,,/images/wall4.png")
+            new Uri("pack://application:,,,/images/tank1.png")
+        };
+
+        private static readonly Dictionary<Direction, int> directionToAngle = new Dictionary<Direction, int>
+        {
+            {Direction.Up,0 },
+            {Direction.Right,90 },
+            {Direction.Down,180 },
+            {Direction.Left,270 }
+        };
+
+        private static readonly Dictionary<ObjectType, Uri> typeUri = new Dictionary<ObjectType, Uri>
+        {
+            {ObjectType.Player, new Uri("pack://application:,,,/images/tank1.png") },
+            {ObjectType.Wall, new Uri("pack://application:,,,/images/wall1.png") }
         };
 
         public static void SetCanvas(Canvas c)
@@ -46,7 +57,7 @@ namespace BattleCitySharp
             Canvas.SetLeft(tank1, 1);
             Canvas.SetTop(tank1, 0);
 
-            tank1.Source = BitmapFrame.Create(new Uri("pack://application:,,,/images/tank1.png"));
+            tank1.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(tank1);
             return tank1;
         }
@@ -54,10 +65,11 @@ namespace BattleCitySharp
         public static void RotateObject(GameObject gameObject)
         {
             var tank1 = gameObject.ObjectGraphic;
+            var angle = directionToAngle[gameObject.Transform.Direction];
             Application.Current.Dispatcher.Invoke(() =>
             {
                 a += 90;
-                RotateTransform rotateTransform1 = new RotateTransform(a);
+                RotateTransform rotateTransform1 = new RotateTransform(angle);
 
                 //Центр вращения
                 rotateTransform1.CenterX = 35;
@@ -71,9 +83,6 @@ namespace BattleCitySharp
             var image = gameObject.ObjectGraphic;
 
             var pos = gameObject.Transform.ChangePosition(direction, speed);
-            // var x = gameObject.Transform.Position.X;
-            // var y = gameObject.Transform.Position.Y;
-            // gameObject.Transform.Position = new Vector2(x + direction.X * speed, y + direction.Y * speed);
             
             Application.Current.Dispatcher.Invoke(() =>
             {

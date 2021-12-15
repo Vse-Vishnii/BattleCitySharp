@@ -24,14 +24,13 @@ namespace BattleCitySharp
         public virtual void ColliderStay(Collider collider) { }
         public virtual void ColliderExit(Collider collider) { }
 
-        public GameObject CreateGameObjectProperties(Cell cell, Direction rotation, Image image)
+        public void CreateGameObjectProperties(Cell cell, Direction rotation, Image image)
         {
             Transform.Position = new Vector2(cell.X * 70, cell.Y * 70);
             Transform.Direction = rotation;
             ObjectGraphic = image;
             Collider = new Collider(this);
             Start();
-            return this;
         }        
     }
 }

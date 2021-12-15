@@ -18,6 +18,14 @@ namespace BattleCitySharp
             this.gameObject = gameObject;
         }
 
+        public bool CanMove(Image graphic)
+        {
+            foreach (var c in Collisions)
+                if (c)
+                    return false;
+            return true;
+        }
+
         public void CheckCollision(GameObject[] gameObjects)
         {
             var graphic = gameObject.ObjectGraphic;

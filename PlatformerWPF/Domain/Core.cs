@@ -12,10 +12,9 @@ namespace BattleCitySharp
         public static object Instantiate(GameObject original, Cell cell, Direction rotation)
         {
             var image = Drawer.DrawObject(cell, original.GameObjectType);
-            var gO = original.CreateGameObjectProperties(cell, rotation, image);
+            original.CreateGameObjectProperties(cell, rotation, image);
             Runner.objects.Add(original);
             Runner.objects.Select(o => { o.Collider.Collisions.Add(false); return o; });
-            //Drawer.DrawObject(gO);
             return original;
         }
     }
