@@ -32,29 +32,44 @@ namespace BattleCitySharp
             if (Collisions.Count > 0)
                 foreach(var obj in gameObjects)
                 {
-                    int index = Array.IndexOf(gameObjects, obj);
-                    Collisions[index] = ExecuteCollider(graphic, obj.ObjectGraphic, obj, Collisions[index]);
+                    if (!gameObject.Equals(obj))
+                    {
+                        int index = Array.IndexOf(gameObjects, obj);
+                        Collisions[index] = ExecuteCollider(graphic, obj.ObjectGraphic, obj, Collisions[index]);
+                    }                    
                 }
         }
 
         private bool ExecuteCollider(Image graphic, Image other, GameObject obj, bool collision)
-        {
-            var rect1 = new Rect(Canvas.GetLeft(graphic), Canvas.GetTop(graphic), graphic.Width, graphic.Height);
-            var rect2 = new Rect(Canvas.GetLeft(other), Canvas.GetTop(other), other.Width, other.Height);
-            if (rect1.IntersectsWith(rect2))
-                if (collision)
-                    gameObject.ColliderStay(obj.Collider);
-                else
-                {
-                    collision = true;
-                    gameObject.ColliderEnter(obj.Collider);
-                }
-            else if (collision)
+        {            
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                collision = false;
-                gameObject.ColliderExit(obj.Collider);
-            }
-            return collision;
+                var rect1 = new Rect(Canvas.GetLeft(graphic), Canvas.GetTop(graphic), graphic.Width, graphic.Height);
+                var rect2 = new Rect(Canvas.GetLeft(other), Canvas.GetTop(other), other.Width, other.Height);
+                if (rect1.IntersectsWith(rect2))
+                {
+                    //
+                    var a = 0;
+                    if (gameObject.GameObjectType == ObjectType.Player)
+                        a++;
+                    //
+                    if (collision)
+                        gameObject.ColliderStay(obj.Collider);
+                    else
+                    {
+                        collision = true;
+                        gameObject.ColliderEnter(obj.Collider);
+                    }
+                }
+                    
+                else if (collision)
+                {
+                    collision = false;
+                    gameObject.ColliderExit(obj.Collider);
+                }
+                return collision;
+            });
+            return false;
         }
     }
 }

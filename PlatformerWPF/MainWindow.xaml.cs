@@ -43,7 +43,13 @@ namespace BattleCitySharp
                 frames = 0;
                 lastTime = DateTime.Now;
             }
-            Dispatcher.Invoke(() => FPS.Text = fps.ToString());
+            Dispatcher.Invoke(() => 
+            {
+                FPS.Text = fps.ToString();
+                //
+                CanMove.Text = Runner.Player.CanMove.ToString();
+                //
+            });
         }
     }
 }

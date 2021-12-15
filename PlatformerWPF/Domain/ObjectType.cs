@@ -4,6 +4,7 @@ namespace BattleCitySharp
     {
         Player,
         Wall,
-        Enemy
+        Enemy,
+        Manager
     }
 }

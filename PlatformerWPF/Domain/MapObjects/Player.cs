@@ -11,6 +11,7 @@ namespace BattleCitySharp
 {
     public class Player : GameObject
     {
+        public bool CanMove;
         private float speed = 5;
 
         private Vector2 moveDir;
@@ -50,7 +51,8 @@ namespace BattleCitySharp
             if (moveDir.X != 0 || moveDir.Y != 0)
             {
                 Drawer.RotateObject(this);
-                if (Collider.CanMove(ObjectGraphic))
+                CanMove = Collider.CanMove(ObjectGraphic);
+                if (CanMove)
                 {
                     Drawer.Move(this, moveDir, speed);
                 }                

@@ -54,10 +54,10 @@ namespace BattleCitySharp
             var tank1 = new Image();
             tank1.Width = 70;
             tank1.Height = 70;
-            Canvas.SetLeft(tank1, 1);
-            Canvas.SetTop(tank1, 0);
-
-            tank1.Source = BitmapFrame.Create(typeUri[objectType]);
+            Canvas.SetLeft(tank1, cell.X * 70);
+            Canvas.SetTop(tank1, cell.Y * 70);
+            if (objectType != ObjectType.Manager)
+                tank1.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(tank1);
             return tank1;
         }

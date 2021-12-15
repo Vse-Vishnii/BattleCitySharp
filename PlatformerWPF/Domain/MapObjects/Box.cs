@@ -8,5 +8,9 @@ namespace BattleCitySharp
 {
     public class Box : MapObject
     {
+        public Box()
+        {
+            GameObjectType = ObjectType.Wall;
+        }
     }
 }

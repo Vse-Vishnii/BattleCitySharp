@@ -9,12 +9,13 @@ namespace BattleCitySharp
 {
     public static class Core
     {
-        public static object Instantiate(GameObject original, Cell cell, Direction rotation)
+        public static GameObject Instantiate(GameObject original, Cell cell, Direction rotation)
         {
             var image = Drawer.DrawObject(cell, original.GameObjectType);
             original.CreateGameObjectProperties(cell, rotation, image);
             Runner.objects.Add(original);
-            Runner.objects.Select(o => { o.Collider.Collisions.Add(false); return o; });
+            original.Collider.Collisions.AddRange(Runner.objects[0].Collider.Collisions);
+            Runner.objects.ForEach(o => o.Collider.Collisions.Add(false));
             return original;
         }
     }

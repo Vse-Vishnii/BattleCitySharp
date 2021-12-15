@@ -22,6 +22,7 @@
             <ColumnDefinition Width="170"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="FPS" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock x:Name="CanMove" Grid.Row="1" Grid.Column="0"/>
         <Canvas x:Name="Canvas1" Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black">
             <!--<Image x:Name="Wall1" Canvas.Left="0" Width="70" Height="70" Canvas.Top="0" Source="images/wall1.png"></Image>
             <Image x:Name="Wall2" Canvas.Left="70" Width="70" Source="images/wall2.png"></Image>
