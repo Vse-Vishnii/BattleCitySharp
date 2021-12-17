@@ -14,7 +14,7 @@ namespace BattleCitySharp
         public bool CanMove;
         private float speed = 5;
 
-        private Vector2 moveDir;
+        public Vector2 MoveDir { get; private set; }
         private float slowSpeed;
 
         private Input input;
@@ -30,9 +30,9 @@ namespace BattleCitySharp
         {
             var vertical = input.GetAxis("Vertical");
             var horizontal = input.GetAxis("Horizontal");
-            moveDir = new Vector2(horizontal, vertical);
-            Transform.Direction = GetDirection(moveDir);
-            Move(moveDir, speed);
+            MoveDir = new Vector2(horizontal, vertical);
+            Transform.Direction = GetDirection(MoveDir);
+            Move(MoveDir, speed);
         }
 
         private Direction GetDirection(Vector2 moveDir)
@@ -51,7 +51,7 @@ namespace BattleCitySharp
             if (moveDir.X != 0 || moveDir.Y != 0)
             {
                 Drawer.RotateObject(this);
-                CanMove = Collider.CanMove(ObjectGraphic);
+                CanMove = Collider.CanMove();
                 if (CanMove)
                 {
                     Drawer.Move(this, moveDir, speed);

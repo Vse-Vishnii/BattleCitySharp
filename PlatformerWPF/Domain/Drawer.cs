@@ -49,13 +49,13 @@ namespace BattleCitySharp
             canvas = c;
         }
 
-        public static Image DrawObject(Cell cell, ObjectType objectType)
+        public static Image DrawObject(Vector2 point, ObjectType objectType, int size = 70)
         {
             var tank1 = new Image();
-            tank1.Width = 70;
-            tank1.Height = 70;
-            Canvas.SetLeft(tank1, cell.X * 70);
-            Canvas.SetTop(tank1, cell.Y * 70);
+            tank1.Width = size;
+            tank1.Height = size;
+            Canvas.SetLeft(tank1, point.X);
+            Canvas.SetTop(tank1, point.Y);
             if (objectType != ObjectType.Manager)
                 tank1.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(tank1);
@@ -68,7 +68,6 @@ namespace BattleCitySharp
             var angle = directionToAngle[gameObject.Transform.Direction];
             Application.Current.Dispatcher.Invoke(() =>
             {
-                a += 90;
                 RotateTransform rotateTransform1 = new RotateTransform(angle);
 
                 //Центр вращения

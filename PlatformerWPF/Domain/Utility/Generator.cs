@@ -16,6 +16,7 @@ namespace BattleCitySharp
         public Generator()
         {
             Cell = new Cell(0, 0);
+            GameObjectType = ObjectType.Manager;
         }
 
         public override void Start()
