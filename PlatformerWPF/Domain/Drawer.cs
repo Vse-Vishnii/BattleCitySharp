@@ -43,14 +43,9 @@ namespace BattleCitySharp
 
         public static Image DrawObject(Cell cell, ObjectType objectType, int sizeX = 70, int sizeY = 70)
         {
-            var image = CreateImage((sizeX, sizeY));
-            //
-            // image.Width = sizeX;
-            // image.Height = sizeY;
-            
+            var image = CreateImage((sizeX, sizeY));            
             Canvas.SetLeft(image, cell.X * 70);
             Canvas.SetTop(image, cell.Y * 70);
-            
             if (objectType != ObjectType.Manager)
                 image.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(image);

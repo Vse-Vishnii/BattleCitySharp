@@ -46,9 +46,8 @@ namespace BattleCitySharp
             Dispatcher.Invoke(() => 
             {
                 FPS.Text = fps.ToString();
-                //
-                CanMove.Text = Runner.Player.CanMove.ToString();
-                //
+                Pos.Text = Drawer.DebugText;
+                newPos.Text = Collider.DebugTest;
             });
         }
     }

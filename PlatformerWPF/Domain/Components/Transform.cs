@@ -13,6 +13,7 @@ namespace BattleCitySharp
     {
         public Vector2 Position { get; set; }
         public Direction Direction { get; set; }
+        public int Size { get; set; }
 
         public Vector2 ChangePosition (Vector2 direction, float speed)
         {
