@@ -28,6 +28,7 @@ namespace BattleCitySharp
 
         public override void Update()
         {
+            Drawer.DrawDebug(this);
             var vertical = input.GetAxis("Vertical");
             var horizontal = input.GetAxis("Horizontal");
             MoveDir = new Vector2(horizontal, vertical);

@@ -46,6 +46,8 @@ namespace BattleCitySharp
             Dispatcher.Invoke(() => 
             {
                 FPS.Text = fps.ToString();
+                Pos.Text = Drawer.DebugText;
+                newPos.Text = Collider.DebugTest;
             });
         }
     }
