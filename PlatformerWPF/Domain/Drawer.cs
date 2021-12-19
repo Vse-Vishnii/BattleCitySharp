@@ -12,23 +12,9 @@ using System.Windows.Threading;
 
 namespace BattleCitySharp
 {
-    public class Drawer
+    public static class Drawer
     {
         private static Canvas canvas;
-        private static float a = 0;
-
-        private static Uri[] wallType = new Uri[]
-        {
-            new Uri("pack://application:,,,/images/wall1.png"),
-            new Uri("pack://application:,,,/images/wall2.png"),
-            new Uri("pack://application:,,,/images/wall3.png"),
-            new Uri("pack://application:,,,/images/wall4.png")
-        };
-        
-        private static Uri[] tankType = new Uri[]
-        {
-            new Uri("pack://application:,,,/images/tank1.png")
-        };
 
         private static readonly Dictionary<Direction, int> directionToAngle = new Dictionary<Direction, int>
         {
@@ -40,6 +26,7 @@ namespace BattleCitySharp
 
         private static readonly Dictionary<ObjectType, Uri> typeUri = new Dictionary<ObjectType, Uri>
         {
+            {ObjectType.Idle, new Uri("")},
             {ObjectType.Player, new Uri("pack://application:,,,/images/tank1.png") },
             {ObjectType.Wall, new Uri("pack://application:,,,/images/wall1.png") }
         };
@@ -49,31 +36,36 @@ namespace BattleCitySharp
             canvas = c;
         }
 
-        public static Image DrawObject(Vector2 point, ObjectType objectType, int size = 70)
+        private static Image CreateImage((int,int) size)
         {
-            var tank1 = new Image();
-            tank1.Width = size;
-            tank1.Height = size;
-            Canvas.SetLeft(tank1, point.X);
-            Canvas.SetTop(tank1, point.Y);
-            if (objectType != ObjectType.Manager)
-                tank1.Source = BitmapFrame.Create(typeUri[objectType]);
-            canvas.Children.Add(tank1);
-            return tank1;
+            return new Image() {Width = size.Item1, Height = size.Item2};
         }
 
-        public static void RotateObject(GameObject gameObject)
+        public static Image DrawObject(Cell cell, ObjectType objectType, int sizeX = 70, int sizeY = 70)
         {
-            var tank1 = gameObject.ObjectGraphic;
+            var image = CreateImage((sizeX, sizeY));            
+            Canvas.SetLeft(image, cell.X * 70);
+            Canvas.SetTop(image, cell.Y * 70);
+            if (objectType != ObjectType.Manager)
+                image.Source = BitmapFrame.Create(typeUri[objectType]);
+            canvas.Children.Add(image);
+            return image;
+        }
+
+        public static void RotateObject(GameObject gameObject, int axisX = 35, int axisY = 35)
+        {
+            var graphic = gameObject.ObjectGraphic;
+            
             var angle = directionToAngle[gameObject.Transform.Direction];
+            
             Application.Current.Dispatcher.Invoke(() =>
             {
                 RotateTransform rotateTransform1 = new RotateTransform(angle);
 
                 //Центр вращения
-                rotateTransform1.CenterX = 35;
-                rotateTransform1.CenterY = 35;
-                tank1.RenderTransform = rotateTransform1;
+                rotateTransform1.CenterX = axisX;
+                rotateTransform1.CenterY = axisY;
+                graphic.RenderTransform = rotateTransform1;
             });  
         }
 
