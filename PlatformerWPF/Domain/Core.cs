@@ -25,7 +25,9 @@ namespace BattleCitySharp
                 original.CreateGameObjectProperties(point, rotation, image, size);
                 Runner.objects.Add(original);
                 original.Collider.Collisions.AddRange(Runner.objects[0].Collider.Collisions);
+                original.Collider.Triggers.AddRange(Runner.objects[0].Collider.Triggers);
                 Runner.objects.ForEach(o => o.Collider.Collisions.Add(false));
+                Runner.objects.ForEach(o => o.Collider.Triggers.Add(false));
             });
             return original;
         }

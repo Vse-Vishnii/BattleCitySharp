@@ -28,7 +28,7 @@ namespace BattleCitySharp
         {
             {ObjectType.Manager, new Uri("pack://application:,,,/images/empty.png")},
             {ObjectType.Player, new Uri("pack://application:,,,/images/tank1.png") },
-            {ObjectType.Wall, new Uri("pack://application:,,,/images/wall1.png") },
+            {ObjectType.Wall, new Uri("pack://application:,,,/images/brick.png") },
             {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") }
         };
 

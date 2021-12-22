@@ -12,9 +12,13 @@ namespace BattleCitySharp
         private float speed = 10f;
 
         public Bullet()
-        {
-            IsTrigger = true;
+        {            
             GameObjectType = ObjectType.Bullet;
+        }
+
+        public override void Start()
+        {
+            Collider.IsTrigger = true;
         }
 
         public override void Update()

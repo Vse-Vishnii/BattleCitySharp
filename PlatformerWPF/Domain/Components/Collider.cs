@@ -14,7 +14,7 @@ namespace BattleCitySharp
     {
         public bool IsTrigger { get; set; } = false;
 
-        private GameObject gameObject { get; }
+        public GameObject GameObject { get; }
         public List<bool> Collisions { get; } = new List<bool>();
         public List<bool> Triggers { get; } = new List<bool>();
 
@@ -23,7 +23,7 @@ namespace BattleCitySharp
 
         public Collider(GameObject gameObject)
         {
-            this.gameObject = gameObject;
+            this.GameObject = gameObject;
         }
 
         public bool CanMove()
@@ -38,11 +38,11 @@ namespace BattleCitySharp
 
         public async void CheckCollision(GameObject[] gameObjects)
         {
-            var graphic = gameObject.ObjectGraphic;
+            var graphic = GameObject.ObjectGraphic;
             if (Collisions.Count > 0)
                 foreach(var obj in gameObjects)
                 {
-                    if (!gameObject.Equals(obj))
+                    if (!GameObject.Equals(obj))
                     {
                         var i = Array.IndexOf(gameObjects, obj);
                         await Task.Run(()=> ExecuteCollider(graphic, obj.ObjectGraphic, obj, i));
@@ -54,26 +54,27 @@ namespace BattleCitySharp
         {            
             var collision = Collisions[i];
             var trigger = Triggers[i];
+            if (!(GameObject is MovingObject) && !(obj is MovingObject))
+                return;
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var rect1 = SetRect1(graphic);
                 var rect2 = new Rect(Canvas.GetLeft(other), Canvas.GetTop(other), other.Width, other.Height);
                 if (rect1.IntersectsWith(rect2))
                     if (trigger)
-                        gameObject.ColliderStay(obj.Collider);
+                        GameObject.ColliderStay(obj.Collider);
                     else
-                    {
-                        if (obj.Collider.IsTrigger)
+                        if (IsTrigger || obj.Collider.IsTrigger)
                         {
                             trigger = true;
-                            gameObject.ColliderEnter(obj.Collider);
+                            GameObject.ColliderEnter(obj.Collider);
                         }
-                        collision = true;                        
-                    }
+                        else
+                            collision = true;
                 else if (trigger)
                 {
                     trigger = false;                    
-                    gameObject.ColliderExit(obj.Collider);
+                    GameObject.ColliderExit(obj.Collider);
                 }
                 else
                     collision = false;
@@ -84,7 +85,7 @@ namespace BattleCitySharp
         private Rect SetRect1(Image graphic)
         {
             var rect1 = new Rect(Canvas.GetLeft(graphic), Canvas.GetTop(graphic), graphic.Width, graphic.Height);
-            if (gameObject.GameObjectType == ObjectType.Player)
+            if (GameObject.GameObjectType == ObjectType.Player)
             {
                 rect1 = SetPlayerCollider();
             }
@@ -94,7 +95,7 @@ namespace BattleCitySharp
 
         private Rect SetPlayerCollider()
         {
-            var player = gameObject as Player;
+            var player = GameObject as Player;
             var pos = player.Transform.Position;
             var size = player.Transform.Size;
             var moveDir = player.Transform.MoveDirection;
