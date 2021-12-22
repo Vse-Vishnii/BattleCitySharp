@@ -16,6 +16,7 @@ namespace BattleCitySharp
             new Uri("pack://application:,,,/images/bush.png"),
             new Uri("pack://application:,,,/images/water.png")
         };
+        private int stateNumber = 0;
 
         public Box()
         {
@@ -25,19 +26,30 @@ namespace BattleCitySharp
         public override void Start()
         {
             var random = new Random();
-            var stateNumber = random.Next(0, textures.Length);
+            stateNumber = random.Next(0, textures.Length);
             ObjectGraphic.Source = BitmapFrame.Create(textures[stateNumber]);
-            if (stateNumber == 3)
+            if (stateNumber == 3 || stateNumber == 2)
                 Collider.IsTrigger = true;
         }
 
         public override void ColliderEnter(Collider collider)
         {
+            ProcessCollider(collider, p => p.SlowDown());
+        }
+
+        public override void ColliderExit(Collider collider)
+        {
+            ProcessCollider(collider, p => p.SpeedUp());
+        }
+
+       private void ProcessCollider(Collider collider, Action<Player> action)
+        {
             var gameObject = collider.GameObject;
             if (gameObject is Player)
             {
                 var player = gameObject as Player;
-                player.SlowDown();
+                if (stateNumber == 3)
+                    action(player);
             }
         }
     }

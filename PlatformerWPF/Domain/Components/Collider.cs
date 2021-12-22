@@ -79,6 +79,7 @@ namespace BattleCitySharp
                 else
                     collision = false;
                 Collisions[i] = collision;
+                Triggers[i] = trigger;
             });
         }
 
