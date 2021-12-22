@@ -24,6 +24,7 @@ namespace BattleCitySharp
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
         {
+            Time.SetDeltaTime();
             DisplayFPS();
             Runner.RunObjects();
         }
@@ -46,8 +47,7 @@ namespace BattleCitySharp
             Dispatcher.Invoke(() => 
             {
                 FPS.Text = fps.ToString();
-                Pos.Text = Drawer.DebugText;
-                newPos.Text = Collider.DebugTest;
+                //FPS.Text = Time.DeltaTime.ToString();
             });
         }
     }

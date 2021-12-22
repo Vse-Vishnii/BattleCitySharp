@@ -14,7 +14,7 @@ namespace BattleCitySharp
         public static void RunObjects()
         {
             objects.ForEach(o => o.Collider.CheckCollision(objects.ToArray()));
-            objects.ForEach(o => o.Update());
+            objects.ToList().ForEach(o => o.Update());
             objects.ForEach(o => o.LateUpdate());
             Array.ForEach(Inputs, i => i.ResetKeys());          
         }

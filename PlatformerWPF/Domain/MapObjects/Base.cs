@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class Base : MapObject
+    public class Base : MovingObject
     {
     }
 }

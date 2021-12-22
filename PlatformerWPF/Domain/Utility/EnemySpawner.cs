@@ -8,5 +8,6 @@ namespace BattleCitySharp
 {
     public class EnemySpawner : GameObject
     {
+
     }
 }

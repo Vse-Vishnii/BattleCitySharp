@@ -26,9 +26,10 @@ namespace BattleCitySharp
 
         private static readonly Dictionary<ObjectType, Uri> typeUri = new Dictionary<ObjectType, Uri>
         {
-            {ObjectType.Idle, new Uri("")},
+            {ObjectType.Manager, new Uri("pack://application:,,,/images/empty.png")},
             {ObjectType.Player, new Uri("pack://application:,,,/images/tank1.png") },
-            {ObjectType.Wall, new Uri("pack://application:,,,/images/wall1.png") }
+            {ObjectType.Wall, new Uri("pack://application:,,,/images/wall1.png") },
+            {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") }
         };
 
         public static void SetCanvas(Canvas c)
@@ -36,16 +37,16 @@ namespace BattleCitySharp
             canvas = c;
         }
 
-        private static Image CreateImage((int,int) size)
+        private static Image CreateImage(int size)
         {
-            return new Image() {Width = size.Item1, Height = size.Item2};
+            return new Image() {Width = size, Height = size};
         }
 
-        public static Image DrawObject(Cell cell, ObjectType objectType, int sizeX = 70, int sizeY = 70)
+        public static Image DrawObject(Vector2 point, ObjectType objectType, int size = 70)
         {
-            var image = CreateImage((sizeX, sizeY));            
-            Canvas.SetLeft(image, cell.X * 70);
-            Canvas.SetTop(image, cell.Y * 70);
+            var image = CreateImage(size);            
+            Canvas.SetLeft(image, point.X);
+            Canvas.SetTop(image, point.Y);
             if (objectType != ObjectType.Manager)
                 image.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(image);

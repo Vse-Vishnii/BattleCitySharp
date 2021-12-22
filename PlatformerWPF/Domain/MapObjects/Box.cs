@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class Box : MapObject
+    public class Box : MovingObject
     {
         public Box()
         {
             GameObjectType = ObjectType.Wall;
         }
+
+
     }
 }

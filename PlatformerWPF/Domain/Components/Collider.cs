@@ -12,10 +12,11 @@ namespace BattleCitySharp
 {
     public class Collider
     {
-        public static string DebugTest = "";
+        public bool IsTrigger { get; set; } = false;
 
         private GameObject gameObject { get; }
         public List<bool> Collisions { get; } = new List<bool>();
+        public List<bool> Triggers { get; } = new List<bool>();
 
         private float playerX = 0;
         private float playerY = 0;
@@ -43,33 +44,40 @@ namespace BattleCitySharp
                 {
                     if (!gameObject.Equals(obj))
                     {
-                        await Task.Run(()=> ExecuteCollider(graphic, obj.ObjectGraphic, obj, gameObjects));
+                        var i = Array.IndexOf(gameObjects, obj);
+                        await Task.Run(()=> ExecuteCollider(graphic, obj.ObjectGraphic, obj, i));
                     }
                 }
         }
 
-        private void ExecuteCollider(Image graphic, Image other, GameObject obj, GameObject[] gameObjects)
-        {
-            var index = Array.IndexOf(gameObjects, obj);
-            var collision = Collisions[index];
+        private void ExecuteCollider(Image graphic, Image other, GameObject obj, int i)
+        {            
+            var collision = Collisions[i];
+            var trigger = Triggers[i];
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var rect1 = SetRect1(graphic);
                 var rect2 = new Rect(Canvas.GetLeft(other), Canvas.GetTop(other), other.Width, other.Height);
                 if (rect1.IntersectsWith(rect2))
-                    if (collision)
+                    if (trigger)
                         gameObject.ColliderStay(obj.Collider);
                     else
                     {
-                        collision = true;
-                        gameObject.ColliderEnter(obj.Collider);
+                        if (obj.Collider.IsTrigger)
+                        {
+                            trigger = true;
+                            gameObject.ColliderEnter(obj.Collider);
+                        }
+                        collision = true;                        
                     }
-                else if (collision)
+                else if (trigger)
                 {
-                    collision = false;
+                    trigger = false;                    
                     gameObject.ColliderExit(obj.Collider);
                 }
-                Collisions[index] = collision;
+                else
+                    collision = false;
+                Collisions[i] = collision;
             });
         }
 
@@ -78,23 +86,30 @@ namespace BattleCitySharp
             var rect1 = new Rect(Canvas.GetLeft(graphic), Canvas.GetTop(graphic), graphic.Width, graphic.Height);
             if (gameObject.GameObjectType == ObjectType.Player)
             {
-                var player = gameObject as Player;
-                var pos = player.Transform.Position;
-                var size = player.Transform.Size;
-                if (player.MoveDir.Y != 0)
-                {
-                    playerX = pos.X + size / 4;
-                    playerY = player.MoveDir.Y > 0 ? pos.Y + size / 2 : pos.Y;
-                }
-                else if (player.MoveDir.X != 0)
-                {
-                    playerY = pos.Y + size / 4;
-                    playerX = player.MoveDir.X > 0 ? pos.X + size / 2 : pos.X;
-                }
-
-                rect1 = new Rect(playerX, playerY, size / 2, size / 2);
+                rect1 = SetPlayerCollider();
             }
 
+            return rect1;
+        }
+
+        private Rect SetPlayerCollider()
+        {
+            var player = gameObject as Player;
+            var pos = player.Transform.Position;
+            var size = player.Transform.Size;
+            var moveDir = player.Transform.MoveDirection;
+            if (moveDir.Y != 0)
+            {
+                playerX = pos.X + size / 4;
+                playerY = moveDir.Y > 0 ? pos.Y + size / 2 : pos.Y;
+            }
+            else if (moveDir.X != 0)
+            {
+                playerY = pos.Y + size / 4;
+                playerX = moveDir.X > 0 ? pos.X + size / 2 : pos.X;
+            }
+
+            var rect1 = new Rect(playerX, playerY, size / 2, size / 2);
             return rect1;
         }
     }

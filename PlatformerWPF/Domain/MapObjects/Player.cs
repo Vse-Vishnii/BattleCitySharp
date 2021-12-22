@@ -4,36 +4,70 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace BattleCitySharp
 {
-    public class Player : GameObject
+    public class Player : MovingObject
     {
-        public bool CanMove;
+        private int bulletSize = 12;
         private float speed = 5;
-
-        public Vector2 MoveDir { get; private set; }
         private float slowSpeed;
 
         private Input input;
+
+        private float cooldown = 1f;
+        private float currentCooldown;
+
+        private Dictionary<Direction, Func<Vector2>> shootPoint;
 
         public Player(Input input)
         {
             this.input = input;
             slowSpeed = speed / 2;
-            GameObjectType = ObjectType.Player;            
+            currentCooldown = 0;
+            GameObjectType = ObjectType.Player;
+            shootPoint = new Dictionary<Direction, Func<Vector2>>
+            {
+                {Direction.Up, ()=> GetShootPoint(0,-1) },
+                {Direction.Right,()=> GetShootPoint(1,0) },
+                {Direction.Down,()=> GetShootPoint(0,1) },
+                {Direction.Left,()=> GetShootPoint(-1,0) }
+            };
         }
 
         public override void Update()
         {
-            Drawer.DrawDebug(this);
+            ProcessMoving();
+            ProcessShooting();
+        }
+
+        private void ProcessShooting()
+        {
+            currentCooldown -= Time.DeltaTime;
+            if (input.GetPressedButton(Key.Space))
+            {
+                if (currentCooldown <= 0)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Core.Instantiate(new Bullet(), shootPoint[Transform.Direction](), Transform.Direction, bulletSize);
+                    });
+                    currentCooldown = cooldown;
+                }
+            }
+        }
+
+        private void ProcessMoving()
+        {
             var vertical = input.GetAxis("Vertical");
             var horizontal = input.GetAxis("Horizontal");
-            MoveDir = new Vector2(horizontal, vertical);
-            Transform.Direction = GetDirection(MoveDir);
-            Move(MoveDir, speed);
+            var moveDir = new Vector2(horizontal, vertical);
+            Transform.Direction = GetDirection(moveDir);
+            Move(moveDir, speed);
         }
 
         private Direction GetDirection(Vector2 moveDir)
@@ -47,17 +81,18 @@ namespace BattleCitySharp
             return Transform.Direction;
         }
 
-        private void Move(Vector2 moveDir, float speed)
+        private Vector2 GetShootPoint(int x, int y)
         {
-            if (moveDir.X != 0 || moveDir.Y != 0)
-            {
-                Drawer.RotateObject(this);
-                CanMove = Collider.CanMove();
-                if (CanMove)
-                {
-                    Drawer.Move(this, moveDir, speed);
-                }                
-            }            
+            var pos = Transform.Position;
+            var size = Transform.Size;
+            var dir = Transform.Direction;
+            var offsetX = x == 0 ? -bulletSize / 2 : dir == Direction.Left ? -bulletSize : 0;
+            var offsetY = y == 0 ? -bulletSize / 2 : dir == Direction.Up ? -bulletSize : 0;
+            x++;
+            y++;                    
+            var pointX = pos.X + x * size / 2 + offsetX;
+            var pointY = pos.Y + y * size / 2 + offsetY;
+            return new Vector2(pointX, pointY);
         }
 
         public void SlowDown()

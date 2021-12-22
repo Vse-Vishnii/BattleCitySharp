@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" ResizeMode="NoResize" Height="1000" Width="1150"
         KeyDown="KeyDownEvent"
-        WindowState="Maximized"
 >
     <Grid Background="#757575">
         

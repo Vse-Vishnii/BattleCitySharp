@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\empty.png" />
+    <None Remove="images\projectile.png" />
     <None Remove="images\tank1.png" />
     <None Remove="images\wall1.png" />
     <None Remove="images\wall2.png" />
@@ -19,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\empty.png" />
+    <Resource Include="images\projectile.png" />
     <Resource Include="images\tank1.png" />
     <Resource Include="images\wall1.png" />
     <Resource Include="images\wall2.png" />

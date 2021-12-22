@@ -10,23 +10,23 @@ namespace BattleCitySharp
 {
     public static class Core
     {
-        public static GameObject Instantiate(GameObject original, Cell cell, Direction rotation, int size = 70)
+        public static GameObject Instantiate(GameObject original, Cell cell, Direction rotation)
         {
-            var image = Drawer.DrawObject(new Vector2(cell.X * size, cell.Y * size), original.GameObjectType, size);
-            original.CreateGameObjectProperties(new Vector2(cell.X * size, cell.Y * size), rotation, image);
-            Runner.objects.Add(original);
-            original.Collider.Collisions.AddRange(Runner.objects[0].Collider.Collisions);
-            Runner.objects.ForEach(o => o.Collider.Collisions.Add(false));
-            return original;
+            var size = 70;
+            var point = new Vector2(cell.X * size, cell.Y * size);
+            return Instantiate(original, point, rotation, size);
         }
 
         public static GameObject Instantiate(GameObject original, Vector2 point, Direction rotation, int size = 70)
         {
-            var image = Drawer.DrawObject(point, original.GameObjectType, size);
-            original.CreateGameObjectProperties(point, rotation, image);
-            Runner.objects.Add(original);
-            original.Collider.Collisions.AddRange(Runner.objects[0].Collider.Collisions);
-            Runner.objects.ForEach(o => o.Collider.Collisions.Add(false));
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var image = Drawer.DrawObject(point, original.GameObjectType, size);
+                original.CreateGameObjectProperties(point, rotation, image, size);
+                Runner.objects.Add(original);
+                original.Collider.Collisions.AddRange(Runner.objects[0].Collider.Collisions);
+                Runner.objects.ForEach(o => o.Collider.Collisions.Add(false));
+            });
             return original;
         }
     }

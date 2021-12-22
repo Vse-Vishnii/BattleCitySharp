@@ -24,11 +24,11 @@ namespace BattleCitySharp
         public virtual void ColliderStay(Collider collider) { }
         public virtual void ColliderExit(Collider collider) { }
 
-        public void CreateGameObjectProperties(Vector2 point, Direction rotation, Image image)
+        public void CreateGameObjectProperties(Vector2 point, Direction rotation, Image image, int size)
         {
             Transform.Position = point;
             Transform.Direction = rotation;
-            Transform.Size = 70;
+            Transform.Size = size;
             ObjectGraphic = image;
             Collider = new Collider(this);
             Start();
