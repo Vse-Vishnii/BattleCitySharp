@@ -29,12 +29,18 @@ namespace BattleCitySharp
             {ObjectType.Manager, new Uri("pack://application:,,,/images/empty.png")},
             {ObjectType.Player, new Uri("pack://application:,,,/images/tank1.png") },
             {ObjectType.Wall, new Uri("pack://application:,,,/images/brick.png") },
-            {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") }
+            {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") },
+            {ObjectType.Enemy, new Uri("pack://application:,,,/images/enemy1.png") }
         };
 
         public static void SetCanvas(Canvas c)
         {
             canvas = c;
+        }
+
+        public static void DeleteObject(Image image)
+        {
+            canvas.Children.Remove(image);
         }
 
         private static Image CreateImage(int size)
