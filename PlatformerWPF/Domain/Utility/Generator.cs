@@ -22,12 +22,16 @@ namespace BattleCitySharp
         public override void Start()
         {
             var random = new Random();
+            var map = new Cell[13,13];
             for (var i = 0; i < generateCount; i++)
             {
                 var x = random.Next(1, 10);
                 var y = random.Next(1, 10);
+                map[x, y] = new Cell(Cell.X + x, Cell.Y + y);
                 Core.Instantiate(new Box(), new Cell(Cell.X + x, Cell.Y + y), Direction.Up);
             }
+            
+            Grid.SetMap(map);
         }
     }
 }

@@ -28,6 +28,8 @@
     <Resource Include="images\steel.png" />
     <Resource Include="images\bush.png" />
     <Resource Include="images\water.png" />
+    <None Remove="images\enemy1.png" />
+    <Resource Include="images\enemy1.png" />
   </ItemGroup>
 
 </Project>

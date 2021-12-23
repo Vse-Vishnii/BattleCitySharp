@@ -29,7 +29,8 @@ namespace BattleCitySharp
             {ObjectType.Manager, new Uri("pack://application:,,,/images/empty.png")},
             {ObjectType.Player, new Uri("pack://application:,,,/images/tank1.png") },
             {ObjectType.Wall, new Uri("pack://application:,,,/images/brick.png") },
-            {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") }
+            {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") },
+            {ObjectType.Enemy, new Uri("pack://application:,,,/images/enemy1.png") }
         };
 
         public static void SetCanvas(Canvas c)
@@ -51,6 +52,11 @@ namespace BattleCitySharp
                 image.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(image);
             return image;
+        }
+
+        public static void DeleteObject(Image image)
+        {
+            canvas.Children.Remove(image);
         }
 
         public static void RotateObject(GameObject gameObject, int axisX = 35, int axisY = 35)
