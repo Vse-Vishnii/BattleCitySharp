@@ -13,7 +13,7 @@ namespace BattleCitySharp
         public static List<GameObject> objects { get; } = new List<GameObject>();
         public static void RunObjects()
         {
-            objects.ForEach(o => o.Collider.CheckCollision(objects.ToArray()));
+            objects.ToList().ForEach(o => o.Collider.CheckCollision(objects.ToArray()));
             objects.ToList().ForEach(o => o.Update());
             objects.ForEach(o => o.LateUpdate());
             Array.ForEach(Inputs, i => i.ResetKeys());          

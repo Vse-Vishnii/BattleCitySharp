@@ -34,7 +34,7 @@ namespace BattleCitySharp
 
         public override void Update()
         {
-            ProcessMoving();
+            //ProcessMoving();
             //ProcessShooting();
         }
 

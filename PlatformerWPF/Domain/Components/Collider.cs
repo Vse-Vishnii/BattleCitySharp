@@ -51,9 +51,14 @@ namespace BattleCitySharp
         }
 
         private void ExecuteCollider(Image graphic, Image other, GameObject obj, int i)
-        {            
-            var collision = Collisions[i];
-            var trigger = Triggers[i];
+        {
+            var collision = false;
+            var trigger = false;
+            if (i < Collisions.Count)
+            {
+                collision = Collisions[i];
+                trigger = Triggers[i];
+            }
             if (!(GameObject is MovingObject) && !(obj is MovingObject))
                 return;
             Application.Current.Dispatcher.Invoke(() =>
@@ -64,6 +69,7 @@ namespace BattleCitySharp
                     if (trigger)
                         GameObject.ColliderStay(obj.Collider);
                     else
+                    {
                         if (IsTrigger || obj.Collider.IsTrigger)
                         {
                             trigger = true;
@@ -71,6 +77,7 @@ namespace BattleCitySharp
                         }
                         else
                             collision = true;
+                    }                        
                 else if (trigger)
                 {
                     trigger = false;                    
@@ -78,8 +85,11 @@ namespace BattleCitySharp
                 }
                 else
                     collision = false;
-                Collisions[i] = collision;
-                Triggers[i] = trigger;
+                if (i < Collisions.Count)
+                {
+                    Collisions[i] = collision;
+                    Triggers[i] = trigger;
+                }                
             });
         }
 

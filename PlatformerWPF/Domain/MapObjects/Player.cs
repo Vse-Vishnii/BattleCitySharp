@@ -13,6 +13,8 @@ namespace BattleCitySharp
 {
     public class Player : MovingObject
     {
+        public readonly Health Health;
+
         private int bulletSize = 12;
         private float speed = 5;
         private float slowSpeed;
@@ -37,6 +39,7 @@ namespace BattleCitySharp
                 {Direction.Down,()=> GetShootPoint(0,1) },
                 {Direction.Left,()=> GetShootPoint(-1,0) }
             };
+            Health = new Health(5, this);
         }
 
         public override void Update()
@@ -86,14 +89,16 @@ namespace BattleCitySharp
             var pos = Transform.Position;
             var size = Transform.Size;
             var dir = Transform.Direction;
-            var offsetX = x == 0 ? -bulletSize / 2 : dir == Direction.Left ? -bulletSize : 0;
-            var offsetY = y == 0 ? -bulletSize / 2 : dir == Direction.Up ? -bulletSize : 0;
+            int offsetX = SetOffset(x, dir);
+            var offsetY = SetOffset(y, dir);
             x++;
-            y++;                    
+            y++;
             var pointX = pos.X + x * size / 2 + offsetX;
             var pointY = pos.Y + y * size / 2 + offsetY;
             return new Vector2(pointX, pointY);
         }
+
+        private int SetOffset(int x, Direction dir) => x == 0 ? -bulletSize / 2 : dir == Direction.Left ? -bulletSize - 1 : 1;
 
         public void SlowDown()
         {

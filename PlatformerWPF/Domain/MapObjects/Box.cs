@@ -9,6 +9,8 @@ namespace BattleCitySharp
 {
     public class Box : GameObject
     {
+        public Health Health { get; private set; }
+
         private Uri[] textures = new Uri[]
         {
             new Uri("pack://application:,,,/images/brick.png"),
@@ -28,8 +30,10 @@ namespace BattleCitySharp
             var random = new Random();
             stateNumber = random.Next(0, textures.Length);
             ObjectGraphic.Source = BitmapFrame.Create(textures[stateNumber]);
-            if (stateNumber == 3 || stateNumber == 2)
+            if (stateNumber >=2)
                 Collider.IsTrigger = true;
+            else
+                Health = new Health(1, this);
         }
 
         public override void ColliderEnter(Collider collider)
