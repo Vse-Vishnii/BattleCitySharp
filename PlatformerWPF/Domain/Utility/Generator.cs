@@ -28,7 +28,7 @@ namespace BattleCitySharp
                 var x = random.Next(1, 10);
                 var y = random.Next(1, 10);
                 map[x, y] = new Cell(Cell.X + x, Cell.Y + y);
-                Core.Instantiate(new Box(), new Cell(Cell.X + x, Cell.Y + y), Direction.Up);
+                Core.Instantiate(new Box(), new Cell(Cell.X + x, Cell.Y + y));
             }
 
             Grid.SetMap(map);

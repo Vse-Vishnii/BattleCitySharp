@@ -30,7 +30,8 @@ namespace BattleCitySharp
             {ObjectType.Player, new Uri("pack://application:,,,/images/tank1.png") },
             {ObjectType.Wall, new Uri("pack://application:,,,/images/brick.png") },
             {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") },
-            {ObjectType.Enemy, new Uri("pack://application:,,,/images/enemy1.png") }
+            {ObjectType.Enemy, new Uri("pack://application:,,,/images/enemy1.png") },
+            {ObjectType.Base, new Uri("pack://application:,,,/images/base.png") }
         };
 
         public static void SetCanvas(Canvas c)

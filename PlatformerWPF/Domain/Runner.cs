@@ -23,9 +23,10 @@ namespace BattleCitySharp
         {
             for (var i = 0; i < Inputs.Length; i++)
                 Inputs[i] = new Input();
-            Core.Instantiate(new Player(Inputs[0]), new Cell(0, 0), Direction.Up);
-            Core.Instantiate(new Generator(), new Cell(10, 10), Direction.Up);
-            Core.Instantiate(new EnemySpawner(), new Cell(-1, -1), Direction.Up);
+            Core.Instantiate(new Player(Inputs[0]), new Cell(0, 0));
+            Core.Instantiate(new Base(), new Cell(3, 3));
+            Core.Instantiate(new Generator(), new Cell(10, 10));
+            Core.Instantiate(new EnemySpawner(), new Cell(-1, -1));
         }
     }
 }

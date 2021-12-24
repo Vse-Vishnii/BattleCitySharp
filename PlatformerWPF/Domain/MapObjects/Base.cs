@@ -8,5 +8,21 @@ namespace BattleCitySharp
 {
     public class Base : MovingObject
     {
+        public Base()
+        {
+            GameObjectType = ObjectType.Base;
+        }
+
+        public override void Start()
+        {
+            var cell = Transform.Position / 70;
+            var cellX = (int)cell.X;
+            var cellY = (int)cell.Y;
+            for (var x = cellX - 1; x <= cellX + 1; x++)
+                for (var y = cellY - 1; y <= cellY + 1; y++)
+                {
+                    Core.Instantiate(new Box(), new Cell(x, y), Transform.Direction);
+                }
+        }
     }
 }

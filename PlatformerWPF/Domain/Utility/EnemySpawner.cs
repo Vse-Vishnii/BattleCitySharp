@@ -31,7 +31,7 @@ namespace BattleCitySharp
                     x = random.Next(1, 10);
                     y = random.Next(1, 10);
                 }
-                Core.Instantiate(new Enemy(), new Cell(Cell.X + x, Cell.Y + y), Direction.Up);
+                Core.Instantiate(new Enemy(), new Cell(Cell.X + x, Cell.Y + y));
             }
         }
 

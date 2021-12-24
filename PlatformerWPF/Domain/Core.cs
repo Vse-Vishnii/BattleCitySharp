@@ -10,14 +10,14 @@ namespace BattleCitySharp
 {
     public static class Core
     {
-        public static GameObject Instantiate(GameObject original, Cell cell, Direction rotation)
+        public static GameObject Instantiate(GameObject original, Cell cell, Direction rotation = Direction.Up)
         {
             var size = 70;
             var point = new Vector2(cell.X * size, cell.Y * size);
             return Instantiate(original, point, rotation, size);
         }
 
-        public static GameObject Instantiate(GameObject original, Vector2 point, Direction rotation, int size = 70)
+        public static GameObject Instantiate(GameObject original, Vector2 point, Direction rotation = Direction.Up, int size = 70)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {

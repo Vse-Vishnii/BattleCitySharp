@@ -6,6 +6,7 @@ namespace BattleCitySharp
         Wall,
         Enemy,
         Manager,
-        Bullet
+        Bullet,
+        Base
     }
 }
