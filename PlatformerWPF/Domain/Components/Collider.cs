@@ -50,6 +50,20 @@ namespace BattleCitySharp
                 }
         }
 
+        public bool[] OverlapSquare()
+        {
+            var collisions = new List<bool>();
+            var graphic = GameObject.ObjectGraphic;
+            var rect1 = new Rect(Canvas.GetLeft(graphic) + 1, Canvas.GetTop(graphic) + 1, graphic.Width - 2, graphic.Height - 2);
+            foreach (var obj in Runner.objects.Where(o => o != GameObject))
+            {
+                var other = obj.ObjectGraphic;                
+                var rect2 = new Rect(Canvas.GetLeft(other) + 1, Canvas.GetTop(other) + 1, other.Width - 2, other.Height - 2);
+                collisions.Add(rect1.IntersectsWith(rect2) ? true : false);
+            }
+            return collisions.ToArray();
+        }
+
         private void ExecuteCollider(Image graphic, Image other, GameObject obj, int i)
         {
             var collision = false;

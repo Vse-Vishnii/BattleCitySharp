@@ -21,7 +21,7 @@ namespace BattleCitySharp
             for (var x = cellX - 1; x <= cellX + 1; x++)
                 for (var y = cellY - 1; y <= cellY + 1; y++)
                 {
-                    Core.Instantiate(new Box(), new Cell(x, y), Transform.Direction);
+                    Core.Instantiate(new Box(), new Cell(x, y), Transform.Direction).To<Box>().StayBrick();
                 }
         }
     }

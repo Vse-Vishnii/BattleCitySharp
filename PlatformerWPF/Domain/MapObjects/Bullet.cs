@@ -30,7 +30,9 @@ namespace BattleCitySharp
         public override void ColliderEnter(Collider collider)
         {
             var gameObject = collider.GameObject;
-            var health = (Health)gameObject.GetType().GetProperties().Where(o => o.PropertyType == typeof(Health)).FirstOrDefault().GetValue(gameObject);
+            var health = (Health)gameObject.GetType().GetProperties()
+                .Where(o => o.PropertyType == typeof(Health))
+                .FirstOrDefault().GetValue(gameObject);
             if (health != null)
             {
                 health.TakeDamage(damage);

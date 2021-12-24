@@ -25,15 +25,38 @@ namespace BattleCitySharp
             GameObjectType = ObjectType.Wall;
         }
 
+        internal void StayBrick()
+        {
+            stateNumber = 0;
+            ChangeBoxMaterial();
+        }
+
         public override void Start()
         {
             var random = new Random();
             stateNumber = random.Next(0, textures.Length);
+            ChangeBoxMaterial();
+            CheckCubes();
+        }
+
+        private void ChangeBoxMaterial()
+        {
             ObjectGraphic.Source = BitmapFrame.Create(textures[stateNumber]);
-            if (stateNumber >=2)
+            if (stateNumber >= 2)
                 Collider.IsTrigger = true;
             else
                 Health = new Health(1, this);
+        }
+
+        private void CheckCubes()
+        {
+            var collisions = Collider.OverlapSquare();
+            foreach (var collision in collisions)
+                if (collision)
+                {
+                    Core.Destroy(this);
+                    return;
+                }                    
         }
 
         public override void ColliderEnter(Collider collider)

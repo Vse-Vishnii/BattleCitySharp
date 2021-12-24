@@ -28,6 +28,7 @@ namespace BattleCitySharp
                 original.Collider.Triggers.AddRange(Runner.objects[0].Collider.Triggers);
                 Runner.objects.ForEach(o => o.Collider.Collisions.Add(false));
                 Runner.objects.ForEach(o => o.Collider.Triggers.Add(false));
+                original.Start();
             });
             return original;
         }
