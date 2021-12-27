@@ -8,6 +8,7 @@ namespace BattleCitySharp
 {
     public struct Cell
     {
+        //Переделать!!!!!!!!!!!
         public int X { get; set; }
         public int Y { get; set; }
         public static int CellSize { get; } = 70;

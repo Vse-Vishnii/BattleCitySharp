@@ -13,7 +13,7 @@ namespace BattleCitySharp
     {
         public Transform Transform { get; set; } = new Transform();
         public Collider Collider { get; private set; }
-        public Image ObjectGraphic { get; private set; } = new Image();        
+        public Image ObjectGraphic { get; private set; }       
         public ObjectType GameObjectType { get; protected set; }
         public int TeamId { get; set; } = 0;
 

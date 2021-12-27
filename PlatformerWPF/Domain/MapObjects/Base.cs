@@ -8,10 +8,12 @@ namespace BattleCitySharp
 {
     public class Base : MovingObject
     {
+        public Health Health { get; }
         public Base()
         {
             GameObjectType = ObjectType.Base;
             TeamId = 1;
+            Health = new Health(1, this);
         }
 
         public override void Start()

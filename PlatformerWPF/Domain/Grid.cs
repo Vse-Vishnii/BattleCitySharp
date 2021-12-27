@@ -2,6 +2,7 @@
 {
     public class Grid
     {
+        //Переделать!!!!!!!!!!!
         public static Cell[,] Map { get; private set; }
 
         // public Grid(Cell[,] map)

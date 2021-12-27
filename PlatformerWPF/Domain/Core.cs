@@ -39,7 +39,7 @@ namespace BattleCitySharp
             {
                 Drawer.DeleteObject(original.ObjectGraphic);
                 var i = Runner.objects.IndexOf(original);
-                Runner.objects.ForEach(o => o.Collider.Collisions.RemoveAt(i));
+                Runner.objects.ForEach(o => o.Collider.Collisions.RemoveAt(Runner.objects.IndexOf(original)));
                 Runner.objects.ForEach(o => o.Collider.Triggers.RemoveAt(i));
                 Runner.objects.Remove(original);
             });

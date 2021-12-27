@@ -47,20 +47,17 @@ namespace BattleCitySharp
                 Collider.IsTrigger = true;
                 var z = stateNumber == 2 ? 2 : 0;
                 Drawer.SetPriority(ObjectGraphic, z);
-            }                
-            else
+            }
+            else if (stateNumber == 0)
                 Health = new Health(1, this);
+            else
+                Health = new Health(100, this);
         }
 
         private void CheckCubes()
         {
-            var collisions = Collider.OverlapSquare();
-            foreach (var collision in collisions)
-                if (collision)
-                {
-                    Core.Destroy(this);
-                    return;
-                }                    
+            if(Collider.OverlapSquare().Contains(true))
+                Core.Destroy(this);              
         }
 
         public override void ColliderEnter(Collider collider)

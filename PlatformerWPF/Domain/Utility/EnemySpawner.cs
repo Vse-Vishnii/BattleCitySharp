@@ -8,31 +8,44 @@ namespace BattleCitySharp
 {
     public class EnemySpawner : GameObject
     {
-        private int generateCount = 2;
-        private int cellSize = 70;
-        private Cell Cell;
+        private int generateCount = 5;
+        private Cell spawnCell;
+
+        private int generated;
+        private int spawnCooldown = 3;
+        private float currentCooldown;
 
         public EnemySpawner()
         {
-            //Cell cell = new Cell(-1, -1);
-            GameObjectType = ObjectType.Manager;
+            GameObjectType = ObjectType.Manager;            
         }
 
         public override void Start()
         {
-            for (var i = 0; i < generateCount; i++)
-            {
-                var random = new Random();
-                var x = random.Next(1, 10);
-                var y = random.Next(1, 10);
+            generated = 0;
+            currentCooldown = 0;
+            var random = new Random();
+            var x = random.Next(1, 10);
+            var y = random.Next(1, 10);
+            //while(Collider.OverlapSquare().Contains(true))
+            //{
+            //    x = random.Next(1, 10);
+            //    y = random.Next(1, 10);
+            //}
+            spawnCell = new Cell(x, y);
+        }
 
-                while (Grid.Map[x, y].X > 0 && Grid.Map[x, y].Y > 0)
-                {
-                    x = random.Next(1, 10);
-                    y = random.Next(1, 10);
-                }
-                Core.Instantiate(new Enemy(), new Cell(Cell.X + x, Cell.Y + y));
-            }
+        public override void Update()
+        {
+            if (generated == 5)
+                return;
+            currentCooldown -= Time.DeltaTime;
+            if (currentCooldown <= 0)
+            {
+                currentCooldown = spawnCooldown;
+                generated++;
+                Core.Instantiate(new Enemy(), spawnCell);
+            }            
         }
 
         // private void CheckSpawnPosition(int x, int y)
