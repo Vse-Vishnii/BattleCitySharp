@@ -18,11 +18,23 @@ namespace BattleCitySharp
 
         private Dictionary<Direction, Func<Vector2>> shootPoint;
 
+        private Vector2[] directions = new Vector2[4]
+        {
+            new Vector2(0, 0.1f),
+            new Vector2(0.1f, 0),
+            new Vector2(0, -0.1f),
+            new Vector2(-0.1f, 0)
+        };
+
+        private Vector2 currentDirection;
+        private int dirIndex;
+
         public Enemy()
         {
             slowSpeed = speed / 2;
             currentCooldown = 0;
             GameObjectType = ObjectType.Enemy;
+            TeamId = 2;
             // shootPoint = new Dictionary<Direction, Func<Vector2>>
             // {
             //     {Direction.Up, ()=> GetShootPoint(0,-1) },
@@ -30,6 +42,14 @@ namespace BattleCitySharp
             //     {Direction.Down,()=> GetShootPoint(0,1) },
             //     {Direction.Left,()=> GetShootPoint(-1,0) }
             // };
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            var random = new Random();
+            var dirIndex = random.Next(0, 3);
+            currentDirection = directions[dirIndex];
         }
 
         public override void Update()
@@ -56,9 +76,18 @@ namespace BattleCitySharp
 
         private void ProcessMoving()
         {
-            var moveDir = new Vector2(0, 1);
-            Transform.Direction = GetDirection(moveDir);
-            Move(moveDir, speed);
+            if (!Collider.CanMove())
+            {
+                var random = new Random();
+                var randDir = dirIndex;
+                while (dirIndex == randDir)                
+                    randDir = random.Next(0, 3);
+                dirIndex = randDir;
+                currentDirection = directions[dirIndex];
+            }
+
+            Transform.Direction = GetDirection(currentDirection);
+            Move(currentDirection, speed);
         }
 
         private Direction GetDirection(Vector2 moveDir)

@@ -18,8 +18,8 @@ namespace BattleCitySharp
         public List<bool> Collisions { get; } = new List<bool>();
         public List<bool> Triggers { get; } = new List<bool>();
 
-        private float playerX = 0;
-        private float playerY = 0;
+        private float tankX = 0;
+        private float tankY = 0;
 
         public Collider(GameObject gameObject)
         {
@@ -28,12 +28,24 @@ namespace BattleCitySharp
 
         public bool CanMove()
         {
-            foreach (var c in Collisions.ToList())
+            foreach (var collision in Collisions.ToList())
             {
-                if (c)
+                var size = GameObject.Transform.Size;
+                var rect = new Rect(tankX, tankY, size / 2, size / 2);
+                var inBounds = CheckInBounds(rect);
+                if (collision || !inBounds)
                     return false;
-            }                
+            }
             return true;
+        }
+
+        private static bool CheckInBounds(Rect rect)
+        {
+            var a = rect.Left >= 0;
+            var b = rect.Right <= Grid.Map.GetLength(0) * Cell.CellSize;
+            var c = rect.Top >= 0;
+            var d = rect.Bottom <= Grid.Map.GetLength(1) * Cell.CellSize;
+            return a && b && c && d;
         }
 
         public async void CheckCollision(GameObject[] gameObjects)
@@ -110,32 +122,32 @@ namespace BattleCitySharp
         private Rect SetRect1(Image graphic)
         {
             var rect1 = new Rect(Canvas.GetLeft(graphic), Canvas.GetTop(graphic), graphic.Width, graphic.Height);
-            if (GameObject.GameObjectType == ObjectType.Player)
+            if (GameObject is MovingObject)
             {
-                rect1 = SetPlayerCollider();
+                rect1 = SetTankCollider();
             }
 
             return rect1;
         }
 
-        private Rect SetPlayerCollider()
+        private Rect SetTankCollider()
         {
-            var player = GameObject as Player;
-            var pos = player.Transform.Position;
-            var size = player.Transform.Size;
-            var moveDir = player.Transform.MoveDirection;
+            var tank = GameObject as MovingObject;
+            var pos = tank.Transform.Position;
+            var size = tank.Transform.Size;
+            var moveDir = tank.Transform.MoveDirection;
             if (moveDir.Y != 0)
             {
-                playerX = pos.X + size / 4;
-                playerY = moveDir.Y > 0 ? pos.Y + size / 2 : pos.Y;
+                tankX = pos.X + size / 4;
+                tankY = moveDir.Y > 0 ? pos.Y + size / 2 : pos.Y;
             }
             else if (moveDir.X != 0)
             {
-                playerY = pos.Y + size / 4;
-                playerX = moveDir.X > 0 ? pos.X + size / 2 : pos.X;
+                tankY = pos.Y + size / 4;
+                tankX = moveDir.X > 0 ? pos.X + size / 2 : pos.X;
             }
 
-            var rect1 = new Rect(playerX, playerY, size / 2, size / 2);
+            var rect1 = new Rect(tankX, tankY, size / 2, size / 2);
             return rect1;
         }
     }

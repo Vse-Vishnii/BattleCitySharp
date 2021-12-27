@@ -10,6 +10,7 @@ namespace BattleCitySharp
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public static int CellSize { get; } = 70;
 
         public Cell(int x,int y)
         {

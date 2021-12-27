@@ -11,6 +11,7 @@ namespace BattleCitySharp
         public Base()
         {
             GameObjectType = ObjectType.Base;
+            TeamId = 1;
         }
 
         public override void Start()

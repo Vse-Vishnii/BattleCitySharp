@@ -11,20 +11,30 @@ namespace BattleCitySharp
     {
         private float speed = 10f;
         private int damage = 2;
+        private int lifeTime = 3;
+        private float time;
 
-        public Bullet()
+        public Bullet(int teamId)
         {            
             GameObjectType = ObjectType.Bullet;
+            TeamId = teamId;
         }
 
         public override void Start()
         {
+            time = lifeTime;
             Collider.IsTrigger = true;
         }
 
         public override void Update()
         {
-            Move(Transform.MoveDirection, speed, Transform.Size / 2);
+            time -= Time.DeltaTime;
+            if (time <= 0)
+                Core.Destroy(this);
+            if (Collider.CanMove())
+                Move(Transform.MoveDirection, speed, Transform.Size / 2);
+            else
+                Core.Destroy(this);
         }
 
         public override void ColliderEnter(Collider collider)

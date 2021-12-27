@@ -40,6 +40,7 @@ namespace BattleCitySharp
                 {Direction.Left,()=> GetShootPoint(-1,0) }
             };
             Health = new Health(5, this);
+            TeamId = 1;
         }
 
         public override void Update()

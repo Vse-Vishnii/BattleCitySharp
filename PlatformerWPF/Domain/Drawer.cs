@@ -57,6 +57,7 @@ namespace BattleCitySharp
             if (objectType != ObjectType.Manager)
                 image.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(image);
+            SetPriority(image, 1);
             return image;
         }
 
@@ -88,6 +89,11 @@ namespace BattleCitySharp
                 Canvas.SetLeft(image, pos.X);
                 Canvas.SetTop(image, pos.Y);
             });            
+        }
+
+        public static void SetPriority(Image image,int priority)
+        {
+            Canvas.SetZIndex(image, priority);
         }
     }
 }

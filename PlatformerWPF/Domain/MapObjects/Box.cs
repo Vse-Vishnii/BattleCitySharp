@@ -43,7 +43,11 @@ namespace BattleCitySharp
         {
             ObjectGraphic.Source = BitmapFrame.Create(textures[stateNumber]);
             if (stateNumber >= 2)
+            {
                 Collider.IsTrigger = true;
+                var z = stateNumber == 2 ? 2 : 0;
+                Drawer.SetPriority(ObjectGraphic, z);
+            }                
             else
                 Health = new Health(1, this);
         }
