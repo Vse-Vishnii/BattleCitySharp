@@ -10,9 +10,7 @@ namespace BattleCitySharp
 {
     public class Enemy : Tank
     {
-        public Health Health { get; }        
-        
-        private float slowSpeed;
+        public Health Health { get; }
 
         private float cooldown = 1f;
         private float currentCooldown;        
@@ -29,7 +27,7 @@ namespace BattleCitySharp
 
         public Enemy()
         {
-            slowSpeed = speed / 2;
+            speed = 10;
             currentCooldown = 0;
             GameObjectType = ObjectType.Enemy;
             TeamId = 2;

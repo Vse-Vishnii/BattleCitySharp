@@ -16,8 +16,14 @@ namespace BattleCitySharp
         protected Vector2 moveDir;
         protected float speed = 5;
 
+        protected float cooldown = 1f;
+        protected float currentCooldown;
+
+        private float slowSpeed;
+
         public Tank()
         {
+            slowSpeed = speed / 2;
             shootPoint = new Dictionary<Direction, Func<Vector2>>
             {
                 {Direction.Up, ()=> GetShootPoint(0,-1) },
@@ -25,6 +31,16 @@ namespace BattleCitySharp
                 {Direction.Down,()=> GetShootPoint(0,1) },
                 {Direction.Left,()=> GetShootPoint(-1,0) }
             };
+        }
+
+        public void SlowDown()
+        {
+            speed = slowSpeed;
+        }
+
+        public void SpeedUp()
+        {
+            speed = slowSpeed * 2;
         }
 
         protected virtual void ProcessMoving()

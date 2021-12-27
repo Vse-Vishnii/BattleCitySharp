@@ -15,18 +15,11 @@ namespace BattleCitySharp
     {
         public Health Health { get; }
 
-        private float speed = 5;
-        private float slowSpeed;
-
         private Input input;
-
-        private float cooldown = 1f;
-        private float currentCooldown;
 
         public Player(Input input)
         {
             this.input = input;
-            slowSpeed = speed / 2;
             currentCooldown = 0;
             GameObjectType = ObjectType.Player;
             Health = new Health(5, this);
@@ -37,16 +30,6 @@ namespace BattleCitySharp
         {
             ProcessMoving();
             ProcessShooting();
-        }
-
-        public void SlowDown()
-        {
-            speed = slowSpeed;
-        }
-
-        public void SpeedUp()
-        {
-            speed = slowSpeed * 2;
         }
 
         protected override void ProcessMoving()

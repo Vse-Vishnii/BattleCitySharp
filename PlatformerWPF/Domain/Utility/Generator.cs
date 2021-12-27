@@ -9,7 +9,7 @@ namespace BattleCitySharp
 {
     public class Generator : GameObject
     {
-        private int generateCount = 20;
+        private int generateCount = 50;
         private int cellSize = 70;
         private Cell Cell;
 
@@ -25,8 +25,8 @@ namespace BattleCitySharp
             var map = new Cell[13, 13];
             for (var i = 0; i < generateCount; i++)
             {
-                var x = random.Next(1, 10);
-                var y = random.Next(1, 10);
+                var x = random.Next(0, 13);
+                var y = random.Next(0, 13);
                 map[x, y] = new Cell(Cell.X + x, Cell.Y + y);
                 Core.Instantiate(new Box(), new Cell(Cell.X + x, Cell.Y + y));
             }

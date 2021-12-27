@@ -10,14 +10,16 @@ namespace BattleCitySharp
 {
     public static class Core
     {
-        public static GameObject Instantiate(GameObject original, Cell cell, Direction rotation = Direction.Up)
+        public static T Instantiate<T>(T original, Cell cell, Direction rotation = Direction.Up)
+            where T : GameObject
         {
             var size = 70;
             var point = new Vector2(cell.X * size, cell.Y * size);
             return Instantiate(original, point, rotation, size);
         }
 
-        public static GameObject Instantiate(GameObject original, Vector2 point, Direction rotation = Direction.Up, int size = 70)
+        public static T Instantiate<T>(T original, Vector2 point, Direction rotation = Direction.Up, int size = 70)
+            where T : GameObject
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -35,14 +37,12 @@ namespace BattleCitySharp
 
         public static void Destroy(GameObject original)
         {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                Drawer.DeleteObject(original.ObjectGraphic);
-                var i = Runner.objects.IndexOf(original);
-                Runner.objects.ForEach(o => o.Collider.Collisions.RemoveAt(Runner.objects.IndexOf(original)));
-                Runner.objects.ForEach(o => o.Collider.Triggers.RemoveAt(i));
-                Runner.objects.Remove(original);
-            });
+            Drawer.DeleteObject(original.ObjectGraphic);
+            var i = Runner.objects.IndexOf(original);
+            Runner.objects.ForEach(o => o.Collider.Collisions.RemoveAt(i));
+            Runner.objects.ForEach(o => o.Collider.Triggers.RemoveAt(i));
+            Runner.objects.Remove(original);
+
         }
     }
 }
