@@ -37,12 +37,17 @@ namespace BattleCitySharp
 
         public static void Destroy(GameObject original)
         {
-            Drawer.DeleteObject(original.ObjectGraphic);
-            var i = Runner.objects.IndexOf(original);
-            Runner.objects.ForEach(o => o.Collider.Collisions.RemoveAt(i));
-            Runner.objects.ForEach(o => o.Collider.Triggers.RemoveAt(i));
-            Runner.objects.Remove(original);
-
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Drawer.DeleteObject(original.ObjectGraphic);
+                var i = Runner.objects.IndexOf(original);
+                if (i != -1)
+                {
+                    Runner.objects.ForEach(o => o.Collider.Collisions.RemoveAt(i));
+                    Runner.objects.ForEach(o => o.Collider.Triggers.RemoveAt(i));
+                }                
+                Runner.objects.Remove(original);
+            });
         }
     }
 }

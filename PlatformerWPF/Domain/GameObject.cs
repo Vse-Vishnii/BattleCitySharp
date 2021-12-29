@@ -21,9 +21,6 @@ namespace BattleCitySharp
         public virtual void Update() { }
         public virtual void LateUpdate() { }
         public virtual void ColliderEnter(Collider collider) { }
-
-        public T To<T>() where T : GameObject => this as T;
-
         public virtual void ColliderStay(Collider collider) { }
         public virtual void ColliderExit(Collider collider) { }
 
