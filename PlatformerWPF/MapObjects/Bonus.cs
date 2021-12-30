@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class AidKit : Bonus
+    public abstract class Bonus
     {
-
     }
 }
