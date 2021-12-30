@@ -13,6 +13,7 @@ namespace BattleCitySharp
         public static T Instantiate<T>(T original, Grid.Cell cell, Direction rotation = Direction.Up)
             where T : GameObject
         {
+            cell.ChangeObjectType(original);
             var point = new Vector2(cell.X, cell.Y);
             return Instantiate(original, point, rotation, Grid.CellSize);
         }
@@ -39,6 +40,8 @@ namespace BattleCitySharp
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
+                if(original is not MovingObject)
+                    Grid.ClearCell(original.Transform.Position);
                 var objects = ObjectContainer.Objects;
                 Drawer.DeleteObject(original.ObjectGraphic);
                 var i = objects.IndexOf(original);

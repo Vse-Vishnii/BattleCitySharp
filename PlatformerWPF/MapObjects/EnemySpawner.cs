@@ -27,11 +27,6 @@ namespace BattleCitySharp
             var random = new Random();
             var x = random.Next(1, 10);
             var y = random.Next(1, 10);
-            //while(Collider.OverlapSquare().Contains(true))
-            //{
-            //    x = random.Next(1, 10);
-            //    y = random.Next(1, 10);
-            //}
             spawnCell = Grid.Instance[x, y];
         }
 

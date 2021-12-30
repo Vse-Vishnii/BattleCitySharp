@@ -1,4 +1,6 @@
-﻿namespace BattleCitySharp
+﻿using System.Numerics;
+
+namespace BattleCitySharp
 {
     public class Grid
     {
@@ -7,13 +9,25 @@
             //Переделать!!!!!!!!!!!
             public int X { get; }
             public int Y { get; }
-            public ObjectType ObjectType { get; }
+            public ObjectType Type { get; private set; }
 
             public Cell(int x, int y, ObjectType objectType = ObjectType.Empty)
             {
                 X = x;
                 Y = y;
-                ObjectType = objectType;
+                Type = objectType;
+            }
+
+            public void ChangeObjectType<T>(T original) where T : GameObject
+            {
+                if (original is MovingObject)
+                    return;
+                Type = original is Box ? ObjectType.Wall : original is Base ? ObjectType.Base : Type;
+            }
+
+            public void ClearCell()
+            {
+                Type = ObjectType.Empty;
             }
         }
 
@@ -39,5 +53,12 @@
         }
 
         public Cell this[int x, int y] => map[x, y];
+
+        public static void ClearCell(Vector2 position)
+        {
+            var x = (int)(position.X / CellSize);
+            var y = (int)(position.Y / CellSize);
+            Instance[x, y].ClearCell();
+        }
     }
 }
