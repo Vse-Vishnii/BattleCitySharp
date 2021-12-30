@@ -7,6 +7,7 @@ namespace BattleCitySharp
         Enemy,
         Manager,
         Bullet,
-        Base
+        Base,
+        Empty
     }
 }

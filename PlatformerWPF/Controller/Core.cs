@@ -10,12 +10,11 @@ namespace BattleCitySharp
 {
     public static class Core
     {
-        public static T Instantiate<T>(T original, Cell cell, Direction rotation = Direction.Up)
+        public static T Instantiate<T>(T original, Grid.Cell cell, Direction rotation = Direction.Up)
             where T : GameObject
         {
-            var size = 70;
-            var point = new Vector2(cell.X * size, cell.Y * size);
-            return Instantiate(original, point, rotation, size);
+            var point = new Vector2(cell.X, cell.Y);
+            return Instantiate(original, point, rotation, Grid.CellSize);
         }
 
         public static T Instantiate<T>(T original, Vector2 point, Direction rotation = Direction.Up, int size = 70)
@@ -23,13 +22,14 @@ namespace BattleCitySharp
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
+                var objects = ObjectContainer.Objects;
                 var image = Drawer.DrawObject(point, original.GameObjectType, size);
                 original.CreateGameObjectProperties(point, rotation, image, size);
-                Runner.objects.Add(original);
-                original.Collider.Collisions.AddRange(Runner.objects[0].Collider.Collisions);
-                original.Collider.Triggers.AddRange(Runner.objects[0].Collider.Triggers);
-                Runner.objects.ForEach(o => o.Collider.Collisions.Add(false));
-                Runner.objects.ForEach(o => o.Collider.Triggers.Add(false));
+                objects.Add(original);
+                original.Collider.Collisions.AddRange(objects[0].Collider.Collisions);
+                original.Collider.Triggers.AddRange(objects[0].Collider.Triggers);
+                objects.ForEach(o => o.Collider.Collisions.Add(false));
+                objects.ForEach(o => o.Collider.Triggers.Add(false));
                 original.Start();
             });
             return original;
@@ -39,14 +39,15 @@ namespace BattleCitySharp
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
+                var objects = ObjectContainer.Objects;
                 Drawer.DeleteObject(original.ObjectGraphic);
-                var i = Runner.objects.IndexOf(original);
+                var i = objects.IndexOf(original);
                 if (i != -1)
                 {
-                    Runner.objects.ForEach(o => o.Collider.Collisions.RemoveAt(i));
-                    Runner.objects.ForEach(o => o.Collider.Triggers.RemoveAt(i));
+                    objects.ForEach(o => o.Collider.Collisions.RemoveAt(i));
+                    objects.ForEach(o => o.Collider.Triggers.RemoveAt(i));
                 }                
-                Runner.objects.Remove(original);
+                objects.Remove(original);
             });
         }
     }

@@ -47,7 +47,7 @@ namespace BattleCitySharp
             {
                 if (currentCooldown <= 0)
                 {
-                    Shoot();
+                    base.ProcessShooting();
                     currentCooldown = cooldown;
                 }
             }

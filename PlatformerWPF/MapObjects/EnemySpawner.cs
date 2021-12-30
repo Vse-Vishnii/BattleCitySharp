@@ -9,7 +9,7 @@ namespace BattleCitySharp
     public class EnemySpawner : GameObject
     {
         private int generateCount = 5;
-        private Cell spawnCell;
+        private Grid.Cell spawnCell;
 
         private int generated;
         private int spawnCooldown = 3;
@@ -32,7 +32,7 @@ namespace BattleCitySharp
             //    x = random.Next(1, 10);
             //    y = random.Next(1, 10);
             //}
-            spawnCell = new Cell(x, y);
+            spawnCell = Grid.Instance[x, y];
         }
 
         public override void Update()

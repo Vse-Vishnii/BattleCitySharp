@@ -51,7 +51,7 @@ namespace BattleCitySharp
 
         protected virtual void ProcessShooting()
         {
-
+            Shoot();
         }
 
         protected void Shoot()

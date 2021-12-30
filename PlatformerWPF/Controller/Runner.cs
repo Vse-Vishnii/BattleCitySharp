@@ -11,9 +11,10 @@ namespace BattleCitySharp
     public static class Runner
     {
         public static Input[] Inputs { get; private set; } = new Input[2];
-        public static List<GameObject> objects { get; } = new List<GameObject>();
+        
         public static void RunObjects()
         {
+            var objects = ObjectContainer.Objects;
             objects.ToList().ForEach(o => o.Collider.CheckCollision(objects.ToArray()));
             objects.ToList().ForEach(o => o.Update());
             Array.ForEach(Inputs, i => i.ResetKeys());          
@@ -23,10 +24,10 @@ namespace BattleCitySharp
         {
             for (var i = 0; i < Inputs.Length; i++)
                 Inputs[i] = new Input();
-            Core.Instantiate(new Player(Inputs[0]), new Cell(0, 0));
-            Core.Instantiate(new Base(), new Cell(3, 3));
-            Core.Instantiate(new Generator(), new Cell(-1, -1));
-            Core.Instantiate(new EnemySpawner(), new Cell(-1, -1));
+            Core.Instantiate(new Player(Inputs[0]), Grid.Instance[0, 0]);
+            Core.Instantiate(new Base(), Grid.Instance[3, 3]);
+            Core.Instantiate(new Generator(), Grid.Instance.EmptyCell);
+            Core.Instantiate(new EnemySpawner(), Grid.Instance.EmptyCell);
         }
     }
 }

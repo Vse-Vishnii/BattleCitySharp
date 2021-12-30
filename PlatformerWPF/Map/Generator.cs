@@ -19,16 +19,12 @@ namespace BattleCitySharp
         public override void Start()
         {
             var random = new Random();
-            var map = new Cell[13, 13];
             for (var i = 0; i < generateCount; i++)
             {
                 var x = random.Next(0, 13);
                 var y = random.Next(0, 13);
-                map[x, y] = new Cell(x, y);
-                Core.Instantiate(new Box(), new Cell(x, y));
+                Core.Instantiate(new Box(), Grid.Instance[x, y]);
             }
-
-            Grid.SetMap(map);
         }
     }
 }
