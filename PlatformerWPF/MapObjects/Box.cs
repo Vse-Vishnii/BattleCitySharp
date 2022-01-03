@@ -10,15 +10,9 @@ namespace BattleCitySharp
     public class Box : GameObject
     {
         public Health Health { get; private set; }
-
-        private Uri[] textures = new Uri[]
-        {
-            new Uri("pack://application:,,,/images/brick.png"),
-            new Uri("pack://application:,,,/images/steel.png"),
-            new Uri("pack://application:,,,/images/bush.png"),
-            new Uri("pack://application:,,,/images/water.png")
-        };
+        
         private int stateNumber = 0;
+        private int stateCount = 4;
 
         public Box()
         {
@@ -28,31 +22,16 @@ namespace BattleCitySharp
         internal void StayBrick()
         {
             stateNumber = 0;
-            ChangeBoxMaterial();
+            Drawer.ChangeBoxMaterial(this, stateNumber);
         }
 
         public override void Start()
         {
             var random = new Random();
-            stateNumber = random.Next(0, textures.Length);
-            ChangeBoxMaterial();
+            stateNumber = random.Next(0, stateCount);
+            Drawer.ChangeBoxMaterial(this, stateNumber);
             CheckCubes();
-        }
-
-        private void ChangeBoxMaterial()
-        {
-            ObjectGraphic.Source = BitmapFrame.Create(textures[stateNumber]);
-            if (stateNumber >= 2)
-            {
-                Collider.IsTrigger = true;
-                var z = stateNumber == 2 ? 2 : 0;
-                Drawer.SetPriority(ObjectGraphic, z);
-            }
-            else if (stateNumber == 0)
-                Health = new Health(1, this);
-            else
-                Health = new Health(100, this);
-        }
+        }       
 
         private void CheckCubes()
         {
