@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public abstract class Bonus
+    public abstract class Bonus : GameObject
     {
+        public Bonus()
+        {
+            Collider.IsTrigger = true;
+        }
     }
 }

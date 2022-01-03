@@ -62,22 +62,23 @@ namespace BattleCitySharp
 
         public override void ColliderEnter(Collider collider)
         {
-            ProcessCollider(collider, p => p.SlowDown());
+            if (stateNumber == 3)
+                WaterState(collider, p => p.SlowDown());
         }
 
         public override void ColliderExit(Collider collider)
         {
-            ProcessCollider(collider, p => p.SpeedUp());
+            if (stateNumber == 3)
+                WaterState(collider, p => p.SpeedUp());
         }
 
-       private void ProcessCollider(Collider collider, Action<Player> action)
+       private void WaterState(Collider collider, Action<Tank> action)
         {
             var gameObject = collider.GameObject;
-            if (gameObject is Player)
+            if (gameObject is Tank)
             {
-                var player = gameObject as Player;
-                if (stateNumber == 3)
-                    action(player);
+                var player = gameObject as Tank;
+                action(player);
             }
         }
     }

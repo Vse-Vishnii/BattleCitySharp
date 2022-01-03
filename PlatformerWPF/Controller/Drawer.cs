@@ -40,10 +40,8 @@ namespace BattleCitySharp
         }
 
         public static void DeleteObject(Image image)
-        {
-            
-            canvas.Children.Remove(image);
-            
+        {            
+            canvas.Children.Remove(image);            
         }
 
         private static Image CreateImage(int size)

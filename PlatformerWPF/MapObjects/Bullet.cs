@@ -42,15 +42,12 @@ namespace BattleCitySharp
             if (collider.GameObject is Bullet)
                 return;
             var gameObject = collider.GameObject;
-            var health = (Health)gameObject.GetType().GetProperties()
-                .Where(o => o.PropertyType == typeof(Health))
-                .FirstOrDefault().GetValue(gameObject);
+            var health = gameObject.GetComponent<Health>();
             if (health != null && TeamId != gameObject.TeamId)
             {
                 health.TakeDamage(damage);
                 Core.Destroy(this);
             }
-                
-        }
+        }        
     }
 }

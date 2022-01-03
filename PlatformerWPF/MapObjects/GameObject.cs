@@ -31,6 +31,14 @@ namespace BattleCitySharp
             Transform.Size = size;
             ObjectGraphic = image;
             Collider = new Collider(this);
-        }        
+        }
+
+        public T GetComponent<T>()
+        {
+            var property = GetType().GetProperties()
+                            .Where(o => o.PropertyType == typeof(T))
+                            .FirstOrDefault();
+            return property != null ? (T)property.GetValue(this) : default(T);
+        }
     }
 }
