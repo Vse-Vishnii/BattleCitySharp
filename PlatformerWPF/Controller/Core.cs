@@ -24,8 +24,8 @@ namespace BattleCitySharp
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var objects = ObjectContainer.Objects;
-                var image = Drawer.DrawObject(point, original.GameObjectType, size);
-                original.CreateGameObjectProperties(point, rotation, image, size);
+                var shape = Drawer.DrawObject(point, original, size);
+                original.CreateGameObjectProperties(point, rotation, size, shape);
                 objects.Add(original);
                 original.Collider.Collisions.AddRange(objects[0].Collider.Collisions);
                 original.Collider.Triggers.AddRange(objects[0].Collider.Triggers);
@@ -43,7 +43,7 @@ namespace BattleCitySharp
                 if(original is not MovingObject)
                     Grid.ClearCell(original.Transform.Position);
                 var objects = ObjectContainer.Objects;
-                Drawer.DeleteObject(original.ObjectGraphic);
+                Drawer.DeleteObject(original);
                 var i = objects.IndexOf(original);
                 if (i != -1)
                 {

@@ -17,13 +17,15 @@ namespace BattleCitySharp
         public GameObject GameObject { get; }
         public List<bool> Collisions { get; } = new List<bool>();
         public List<bool> Triggers { get; } = new List<bool>();
+        private ColliderShape shape;
 
         private float x;
         private float y;
 
-        public Collider(GameObject gameObject)
+        public Collider(GameObject gameObject, ColliderShape shape)
         {
             this.GameObject = gameObject;
+            this.shape = shape;
         }
 
         public bool CanMove()
@@ -50,14 +52,14 @@ namespace BattleCitySharp
 
         public async void CheckCollision(GameObject[] gameObjects)
         {
-            var graphic = GameObject.ObjectGraphic;
+            var shape = GameObject.Collider.shape;
             if (Collisions.Count > 0)
                 foreach(var obj in gameObjects)
                 {
                     if (!GameObject.Equals(obj))
                     {
                         var i = Array.IndexOf(gameObjects, obj);
-                        await Task.Run(()=> ExecuteCollider(graphic, obj.ObjectGraphic, obj, i));
+                        await Task.Run(()=> ExecuteCollider(shape, obj.Collider.shape, obj, i));
                     }
                 }
         }
@@ -65,18 +67,18 @@ namespace BattleCitySharp
         public bool[] OverlapSquare()
         {
             var collisions = new List<bool>();
-            var graphic = GameObject.ObjectGraphic;
-            var rect1 = new Rect(Canvas.GetLeft(graphic) + 1, Canvas.GetTop(graphic) + 1, graphic.Width - 2, graphic.Height - 2);
+            var shape = GameObject.Collider.shape;
+            var rect1 = SetStandartRect(shape, 1);
             foreach (var obj in ObjectContainer.Objects.Where(o => o != GameObject))
             {
-                var other = obj.ObjectGraphic;                
-                var rect2 = new Rect(Canvas.GetLeft(other) + 1, Canvas.GetTop(other) + 1, other.Width - 2, other.Height - 2);
+                var other = obj.Collider.shape;
+                var rect2 = SetStandartRect(other, 1);
                 collisions.Add(rect1.IntersectsWith(rect2) ? true : false);
             }
             return collisions.ToArray();
         }
 
-        private void ExecuteCollider(Image graphic, Image other, GameObject obj, int i)
+        private void ExecuteCollider(ColliderShape shape, ColliderShape other, GameObject obj, int i)
         {
             var collision = false;
             var trigger = false;
@@ -89,8 +91,10 @@ namespace BattleCitySharp
                 return;
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var rect1 = SetRect1(graphic);
-                var rect2 = SetStandartRect(other);
+                if (GameObject is Player)
+                { }
+                var rect1 = SetRect1(shape);
+                var rect2 = SetStandartRect(other);                
                 if (rect1.IntersectsWith(rect2))
                     if (trigger)
                         GameObject.ColliderStay(obj.Collider);
@@ -119,9 +123,9 @@ namespace BattleCitySharp
             });
         }
 
-        private Rect SetRect1(Image graphic)
+        private Rect SetRect1(ColliderShape shape)
         {
-            var rect1 = SetStandartRect(graphic);
+            var rect1 = SetStandartRect(shape);
             if (GameObject is MovingObject)
             {
                 rect1 = SetMovingCollider();
@@ -130,9 +134,14 @@ namespace BattleCitySharp
             return rect1;
         }
 
-        private static Rect SetStandartRect(Image graphic)
+        private static Rect SetStandartRect(ColliderShape shape)
         {
-            return new Rect(Canvas.GetLeft(graphic), Canvas.GetTop(graphic), graphic.Width, graphic.Height);
+            return new Rect(shape.Left, shape.Top, shape.Width, shape.Height);
+        }
+
+        private static Rect SetStandartRect(ColliderShape shape, int offset)
+        {
+            return new Rect(shape.Left + offset, shape.Top + offset, shape.Width - (offset + 1), shape.Height - (offset + 1));
         }
 
         private Rect SetMovingCollider()

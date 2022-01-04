@@ -39,18 +39,15 @@ namespace BattleCitySharp
 
         public override void ColliderEnter(Collider collider)
         {
-            if (collider.GameObject is Bullet)
+            if (collider.GameObject is Bullet || collider.IsTrigger)
                 return;
             var gameObject = collider.GameObject;
-            var health = (Health)gameObject.GetType().GetProperties()
-                .Where(o => o.PropertyType == typeof(Health))
-                .FirstOrDefault().GetValue(gameObject);
+            var health = gameObject.GetComponent<Health>();
             if (health != null && TeamId != gameObject.TeamId)
             {
                 health.TakeDamage(damage);
                 Core.Destroy(this);
             }
-                
-        }
+        }        
     }
 }

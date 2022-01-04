@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleCitySharp.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -34,16 +35,29 @@ namespace BattleCitySharp
             {ObjectType.Base, new Uri("pack://application:,,,/images/base.png") }
         };
 
+        private static Uri[] wallTextures = new Uri[]
+        {
+            new Uri("pack://application:,,,/images/brick.png"),
+            new Uri("pack://application:,,,/images/steel.png"),
+            new Uri("pack://application:,,,/images/bush.png"),
+            new Uri("pack://application:,,,/images/water.png")
+        };
+
+        private static Dictionary<GameObject, ObjectMaterial> gameObjectMaterials = new Dictionary<GameObject, ObjectMaterial>();
+
         public static void SetCanvas(Canvas c)
         {
             canvas = c;
         }
 
-        public static void DeleteObject(Image image)
+        public static void DeleteObject(GameObject gameobject)
         {
-            
-            canvas.Children.Remove(image);
-            
+            if (gameObjectMaterials.ContainsKey(gameobject))
+            {
+                var image = gameObjectMaterials[gameobject].Graphic;
+                canvas.Children.Remove(image);
+                gameObjectMaterials.Remove(gameobject);
+            }            
         }
 
         private static Image CreateImage(int size)
@@ -51,21 +65,23 @@ namespace BattleCitySharp
             return new Image() {Width = size, Height = size};
         }
 
-        public static Image DrawObject(Vector2 point, ObjectType objectType, int size = 70)
+        public static ColliderShape DrawObject(Vector2 point, GameObject original, int size = 70)
         {
-            var image = CreateImage(size);            
+            var image = CreateImage(size);           
             Canvas.SetLeft(image, point.X);
             Canvas.SetTop(image, point.Y);
+            var objectType = original.GameObjectType;
             if (objectType != ObjectType.Manager)
                 image.Source = BitmapFrame.Create(typeUri[objectType]);
             canvas.Children.Add(image);
             SetPriority(image, 1);
-            return image;
+            gameObjectMaterials.Add(original, new ObjectMaterial(image));
+            return new ColliderShape(image.Width, image.Height, original.Transform);
         }
 
         public static void RotateObject(GameObject gameObject, int axisX = 35, int axisY = 35)
         {
-            var graphic = gameObject.ObjectGraphic;
+            var graphic = gameObjectMaterials[gameObject].Graphic;
             
             var angle = directionToAngle[gameObject.Transform.Direction];
             
@@ -82,7 +98,7 @@ namespace BattleCitySharp
 
         public static void Move(GameObject gameObject, Vector2 direction, float speed)
         {
-            var image = gameObject.ObjectGraphic;
+            var image = gameObjectMaterials[gameObject].Graphic;
 
             var pos = gameObject.Transform.ChangePosition(direction, speed);
             
@@ -96,6 +112,17 @@ namespace BattleCitySharp
         public static void SetPriority(Image image,int priority)
         {
             Canvas.SetZIndex(image, priority);
+        }
+
+        public static void ChangeBoxMaterial(Box original, int stateNumber)
+        {
+            var image = gameObjectMaterials[original].Graphic;
+            image.Source = BitmapFrame.Create(wallTextures[stateNumber]);
+            if (stateNumber >= 2)
+            {
+                var z = stateNumber == 2 ? 2 : 0;
+                SetPriority(image, z);
+            }
         }
     }
 }

@@ -25,14 +25,19 @@ namespace BattleCitySharp
             generated = 0;
             currentCooldown = 0;
             var random = new Random();
-            var x = random.Next(1, 10);
-            var y = random.Next(1, 10);
+            int x, y;
+            do
+            {
+                x = random.Next(13);
+                y = random.Next(13);
+            } 
+            while (Grid.Instance[x, y].Type != ObjectType.Empty);
             spawnCell = Grid.Instance[x, y];
         }
 
         public override void Update()
         {
-            if (generated == 5)
+            if (generated == generateCount)
                 return;
             currentCooldown -= Time.DeltaTime;
             if (currentCooldown <= 0)
