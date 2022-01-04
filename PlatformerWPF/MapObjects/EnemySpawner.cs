@@ -37,7 +37,7 @@ namespace BattleCitySharp
 
         public override void Update()
         {
-            if (generated == 5)
+            if (generated == generateCount)
                 return;
             currentCooldown -= Time.DeltaTime;
             if (currentCooldown <= 0)

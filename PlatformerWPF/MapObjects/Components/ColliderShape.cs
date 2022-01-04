@@ -8,17 +8,18 @@ namespace BattleCitySharp
 {
     public class ColliderShape
     {
-        public double Left { get; }
-        public double Top { get; }
-        public double Right { get; }
-        public double Bottom { get; }
+        public double Left { get => transform.Position.X; }
+        public double Top { get => transform.Position.Y; }
+        public double Width { get; }
+        public double Height { get; }
 
-        public ColliderShape(double left, double top, double right, double bottom)
+        private readonly Transform transform;
+
+        public ColliderShape(double width, double height, Transform transform)
         {
-            Left = left;
-            Top = top;
-            Right = right;
-            Bottom = bottom;
+            Width = width;
+            Height = height;
+            this.transform = transform;
         }
     }
 }

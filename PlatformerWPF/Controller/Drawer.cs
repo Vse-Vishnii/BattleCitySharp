@@ -52,9 +52,12 @@ namespace BattleCitySharp
 
         public static void DeleteObject(GameObject gameobject)
         {
-            var image = gameObjectMaterials[gameobject].Graphic;
-            canvas.Children.Remove(image);
-            gameObjectMaterials.Remove(gameobject);
+            if (gameObjectMaterials.ContainsKey(gameobject))
+            {
+                var image = gameObjectMaterials[gameobject].Graphic;
+                canvas.Children.Remove(image);
+                gameObjectMaterials.Remove(gameobject);
+            }            
         }
 
         private static Image CreateImage(int size)
@@ -73,7 +76,7 @@ namespace BattleCitySharp
             canvas.Children.Add(image);
             SetPriority(image, 1);
             gameObjectMaterials.Add(original, new ObjectMaterial(image));
-            return new ColliderShape(Canvas.GetLeft(image), Canvas.GetTop(image), Canvas.GetRight(image), Canvas.GetBottom(image));
+            return new ColliderShape(image.Width, image.Height, original.Transform);
         }
 
         public static void RotateObject(GameObject gameObject, int axisX = 35, int axisY = 35)
@@ -113,19 +116,13 @@ namespace BattleCitySharp
 
         public static void ChangeBoxMaterial(Box original, int stateNumber)
         {
-            var health = original.GetComponent<Health>();
             var image = gameObjectMaterials[original].Graphic;
             image.Source = BitmapFrame.Create(wallTextures[stateNumber]);
             if (stateNumber >= 2)
             {
-                original.Collider.IsTrigger = true;
                 var z = stateNumber == 2 ? 2 : 0;
-                Drawer.SetPriority(image, z);
+                SetPriority(image, z);
             }
-            else if (stateNumber == 0)
-                health = new Health(1, original);
-            else
-                health = new Health(100, original);
         }
     }
 }

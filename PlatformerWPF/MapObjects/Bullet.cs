@@ -39,7 +39,7 @@ namespace BattleCitySharp
 
         public override void ColliderEnter(Collider collider)
         {
-            if (collider.GameObject is Bullet)
+            if (collider.GameObject is Bullet || collider.IsTrigger)
                 return;
             var gameObject = collider.GameObject;
             var health = gameObject.GetComponent<Health>();

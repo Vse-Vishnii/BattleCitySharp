@@ -13,30 +13,37 @@ namespace BattleCitySharp
         
         private int stateNumber = 0;
         private int stateCount = 4;
+        private bool checkedBox = true;
 
         public Box()
         {
             GameObjectType = ObjectType.Wall;
+            Health = new Health(100, this);
         }
 
         internal void StayBrick()
         {
+            if (!checkedBox)
+                return;
             stateNumber = 0;
-            Drawer.ChangeBoxMaterial(this, stateNumber);
+            ChangeBoxMaterial();
         }
 
         public override void Start()
         {
             var random = new Random();
             stateNumber = random.Next(0, stateCount);
-            Drawer.ChangeBoxMaterial(this, stateNumber);
+            ChangeBoxMaterial();
             CheckCubes();
         }       
 
         private void CheckCubes()
         {
-            if(Collider.OverlapSquare().Contains(true))
-                Core.Destroy(this);              
+            if (Collider.OverlapSquare().Contains(true))
+            {
+                checkedBox = false;
+                Core.Destroy(this);
+            }                            
         }
 
         public override void ColliderEnter(Collider collider)
@@ -51,7 +58,7 @@ namespace BattleCitySharp
                 WaterState(collider, p => p.SpeedUp());
         }
 
-       private void WaterState(Collider collider, Action<Tank> action)
+        private void WaterState(Collider collider, Action<Tank> action)
         {
             var gameObject = collider.GameObject;
             if (gameObject is Tank)
@@ -59,6 +66,20 @@ namespace BattleCitySharp
                 var player = gameObject as Tank;
                 action(player);
             }
+        }
+
+        private void ChangeBoxMaterial()
+        {
+            Drawer.ChangeBoxMaterial(this, stateNumber);
+            Collider.IsTrigger = false;
+            if (stateNumber >= 2)
+            {
+                Collider.IsTrigger = true;
+            }
+            else if (stateNumber == 0)
+                Health = new Health(1, this);
+            else
+                Health = new Health(100, this);
         }
     }
 }

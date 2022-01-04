@@ -71,7 +71,7 @@ namespace BattleCitySharp
             var rect1 = SetStandartRect(shape, 1);
             foreach (var obj in ObjectContainer.Objects.Where(o => o != GameObject))
             {
-                var other = GameObject.Collider.shape;
+                var other = obj.Collider.shape;
                 var rect2 = SetStandartRect(other, 1);
                 collisions.Add(rect1.IntersectsWith(rect2) ? true : false);
             }
@@ -91,8 +91,10 @@ namespace BattleCitySharp
                 return;
             Application.Current.Dispatcher.Invoke(() =>
             {
+                if (GameObject is Player)
+                { }
                 var rect1 = SetRect1(shape);
-                var rect2 = SetStandartRect(other);
+                var rect2 = SetStandartRect(other);                
                 if (rect1.IntersectsWith(rect2))
                     if (trigger)
                         GameObject.ColliderStay(obj.Collider);
@@ -134,16 +136,12 @@ namespace BattleCitySharp
 
         private static Rect SetStandartRect(ColliderShape shape)
         {
-            var height = shape.Bottom - shape.Top;
-            var width = shape.Right - shape.Left;
-            return new Rect(shape.Left, shape.Top, width, height);
+            return new Rect(shape.Left, shape.Top, shape.Width, shape.Height);
         }
 
         private static Rect SetStandartRect(ColliderShape shape, int offset)
         {
-            var height = shape.Bottom - shape.Top;
-            var width = shape.Right - shape.Left;
-            return new Rect(shape.Left + offset, shape.Top + offset, width - (offset + 1), height - (offset + 1));
+            return new Rect(shape.Left + offset, shape.Top + offset, shape.Width - (offset + 1), shape.Height - (offset + 1));
         }
 
         private Rect SetMovingCollider()
