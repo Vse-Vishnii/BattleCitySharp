@@ -8,6 +8,7 @@ namespace BattleCitySharp
         Manager,
         Bullet,
         Base,
+        Bonus,
         Empty
     }
 }

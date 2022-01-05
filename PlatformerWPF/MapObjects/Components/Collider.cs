@@ -17,6 +17,7 @@ namespace BattleCitySharp
         public GameObject GameObject { get; }
         public List<bool> Collisions { get; } = new List<bool>();
         public List<bool> Triggers { get; } = new List<bool>();
+
         private ColliderShape shape;
 
         private float x;
@@ -89,38 +90,43 @@ namespace BattleCitySharp
             }
             if (!(GameObject is MovingObject) && !(obj is MovingObject))
                 return;
-            Application.Current.Dispatcher.Invoke(() =>
+            Application.Current.Dispatcher.Invoke(() => Collide(shape, other, obj, i, ref collision, ref trigger));
+        }
+
+        private void Collide(ColliderShape shape, ColliderShape other, GameObject obj, int i, ref bool collision, ref bool trigger)
+        {
+            var rect1 = SetRect1(shape);
+            var rect2 = SetStandartRect(other);
+            if (rect1.IntersectsWith(rect2))
+                ProcessIntersection(obj, ref collision, ref trigger);
+            else if (trigger)
             {
-                if (GameObject is Player)
-                { }
-                var rect1 = SetRect1(shape);
-                var rect2 = SetStandartRect(other);                
-                if (rect1.IntersectsWith(rect2))
-                    if (trigger)
-                        GameObject.ColliderStay(obj.Collider);
-                    else
-                    {
-                        if (IsTrigger || obj.Collider.IsTrigger)
-                        {
-                            trigger = true;
-                            GameObject.ColliderEnter(obj.Collider);
-                        }
-                        else
-                            collision = true;
-                    }                        
-                else if (trigger)
+                trigger = false;
+                GameObject.ColliderExit(obj.Collider);
+            }
+            else
+                collision = false;
+            if (i < Collisions.Count)
+            {
+                Collisions[i] = collision;
+                Triggers[i] = trigger;
+            }
+        }
+
+        private void ProcessIntersection(GameObject obj, ref bool collision, ref bool trigger)
+        {
+            if (trigger)
+                GameObject.ColliderStay(obj.Collider);
+            else
+            {
+                if (IsTrigger || obj.Collider.IsTrigger)
                 {
-                    trigger = false;                    
-                    GameObject.ColliderExit(obj.Collider);
+                    trigger = true;
+                    GameObject.ColliderEnter(obj.Collider);
                 }
                 else
-                    collision = false;
-                if (i < Collisions.Count)
-                {
-                    Collisions[i] = collision;
-                    Triggers[i] = trigger;
-                }                
-            });
+                    collision = true;
+            }
         }
 
         private Rect SetRect1(ColliderShape shape)

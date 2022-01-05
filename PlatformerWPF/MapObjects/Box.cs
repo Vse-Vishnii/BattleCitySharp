@@ -70,7 +70,7 @@ namespace BattleCitySharp
 
         private void ChangeBoxMaterial()
         {
-            Drawer.ChangeBoxMaterial(this, stateNumber);
+            BoxDrawer.ChangeBoxMaterial(this, stateNumber);
             Collider.IsTrigger = false;
             if (stateNumber >= 2)
             {

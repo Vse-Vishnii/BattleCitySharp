@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleCitySharp
 {
-    public class Base : MovingObject
+    public class Base : GameObject
     {
         public Health Health { get; }
         public Base()

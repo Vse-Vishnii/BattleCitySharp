@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="images\base.png" />
+    <None Remove="images\bonus.png" />
     <None Remove="images\brick.png" />
     <None Remove="images\bush.png" />
     <None Remove="images\empty.png" />
@@ -24,6 +25,7 @@
 
   <ItemGroup>
     <Resource Include="images\base.png" />
+    <Resource Include="images\bonus.png" />
     <Resource Include="images\enemy1.png" />
     <Resource Include="images\projectile.png" />
     <Resource Include="images\tank1.png" />

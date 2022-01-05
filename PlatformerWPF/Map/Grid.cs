@@ -1,12 +1,12 @@
-﻿using System.Numerics;
+﻿using System.Collections.Generic;
+using System.Numerics;
 
 namespace BattleCitySharp
 {
     public class Grid
     {
-        public struct Cell
+        public class Cell
         {
-            //Переделать!!!!!!!!!!!
             public int X { get; }
             public int Y { get; }
             public ObjectType Type { get; private set; }
@@ -31,7 +31,6 @@ namespace BattleCitySharp
             }
         }
 
-        //Переделать!!!!!!!!!!!
         private Cell[,] map;
 
         public static int CellSize { get => 70; }
@@ -52,7 +51,18 @@ namespace BattleCitySharp
             EmptyCell = new Cell(-CellSize, -CellSize);
         }
 
-        public Cell this[int x, int y] => map[x, y];
+        public Cell this[int x, int y]
+        {
+            get
+            {
+                var a = new List<ObjectType>();
+                foreach(var q in map)
+                {
+                    a.Add(q.Type);
+                }
+                return map[x, y];
+            }
+        }
 
         public static void ClearCell(Vector2 position)
         {

@@ -13,7 +13,7 @@ using System.Windows.Threading;
 
 namespace BattleCitySharp
 {
-    public static class Drawer
+    public abstract class Drawer
     {
         private static Canvas canvas;
 
@@ -32,18 +32,11 @@ namespace BattleCitySharp
             {ObjectType.Wall, new Uri("pack://application:,,,/images/brick.png") },
             {ObjectType.Bullet, new Uri("pack://application:,,,/images/projectile.png") },
             {ObjectType.Enemy, new Uri("pack://application:,,,/images/enemy1.png") },
-            {ObjectType.Base, new Uri("pack://application:,,,/images/base.png") }
-        };
+            {ObjectType.Base, new Uri("pack://application:,,,/images/base.png") },
+            {ObjectType.Bonus, new Uri("pack://application:,,,/images/bonus.png") }
+        };        
 
-        private static Uri[] wallTextures = new Uri[]
-        {
-            new Uri("pack://application:,,,/images/brick.png"),
-            new Uri("pack://application:,,,/images/steel.png"),
-            new Uri("pack://application:,,,/images/bush.png"),
-            new Uri("pack://application:,,,/images/water.png")
-        };
-
-        private static Dictionary<GameObject, ObjectMaterial> gameObjectMaterials = new Dictionary<GameObject, ObjectMaterial>();
+        protected static Dictionary<GameObject, ObjectMaterial> gameObjectMaterials = new Dictionary<GameObject, ObjectMaterial>();
 
         public static void SetCanvas(Canvas c)
         {
@@ -89,7 +82,6 @@ namespace BattleCitySharp
             {
                 RotateTransform rotateTransform1 = new RotateTransform(angle);
 
-                //Центр вращения
                 rotateTransform1.CenterX = axisX;
                 rotateTransform1.CenterY = axisY;
                 graphic.RenderTransform = rotateTransform1;
@@ -112,17 +104,6 @@ namespace BattleCitySharp
         public static void SetPriority(Image image,int priority)
         {
             Canvas.SetZIndex(image, priority);
-        }
-
-        public static void ChangeBoxMaterial(Box original, int stateNumber)
-        {
-            var image = gameObjectMaterials[original].Graphic;
-            image.Source = BitmapFrame.Create(wallTextures[stateNumber]);
-            if (stateNumber >= 2)
-            {
-                var z = stateNumber == 2 ? 2 : 0;
-                SetPriority(image, z);
-            }
-        }
+        }        
     }
 }

@@ -15,6 +15,7 @@ namespace BattleCitySharp
             if(obj is Player)
             {
                 obj.GetComponent<Health>().TakeDamage(-heal);
+                Core.Destroy(this);
             }
         }
     }

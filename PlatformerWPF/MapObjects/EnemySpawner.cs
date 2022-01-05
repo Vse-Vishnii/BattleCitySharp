@@ -8,11 +8,11 @@ namespace BattleCitySharp
 {
     public class EnemySpawner : GameObject
     {
-        private int generateCount = 5;
+        private int generateCount = 0;
         private Grid.Cell spawnCell;
 
         private int generated;
-        private int spawnCooldown = 3;
+        private int spawnCooldown = 5;
         private float currentCooldown;
 
         public EnemySpawner()

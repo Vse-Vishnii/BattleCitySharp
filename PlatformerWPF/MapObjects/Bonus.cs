@@ -10,6 +10,11 @@ namespace BattleCitySharp
     {
         public Bonus()
         {
+            GameObjectType = ObjectType.Bonus;
+        }
+
+        public override void Start()
+        {
             Collider.IsTrigger = true;
         }
     }
