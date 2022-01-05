@@ -47,6 +47,7 @@ namespace BattleCitySharp
             currentCooldown = cooldown;
             var type = random.Next(typeNumber);
             EnemyDrawer.ChangeEnemyMaterial(this, type);
+            typeDefiner[type]();
         }
 
         public override void Update()
