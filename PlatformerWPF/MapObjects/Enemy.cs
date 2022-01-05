@@ -10,10 +10,9 @@ namespace BattleCitySharp
 {
     public class Enemy : Tank
     {
-        public Health Health { get; }
+        public Health Health { get; private set; }
 
-        private float cooldown = 1f;
-        private float currentCooldown;        
+        private int typeNumber = 2;
 
         private Vector2[] directions = new Vector2[4]
         {
@@ -22,16 +21,21 @@ namespace BattleCitySharp
             new Vector2(0, -0.1f),
             new Vector2(-0.1f, 0)
         };
-        
+
+        private Dictionary<int, Action> typeDefiner;
+
         private int dirIndex;
 
         public Enemy()
         {
-            speed = 10;
             currentCooldown = 0;
             GameObjectType = ObjectType.Enemy;
             TeamId = 2;
-            Health = new Health(1, this);            
+            typeDefiner = new Dictionary<int, Action>
+            {
+                {0,()=>DefineEnemy(1,(1,4),10) },
+                {1,()=>DefineEnemy(3,(2,6),5)  }
+            };
         }
 
         public override void Start()
@@ -39,9 +43,10 @@ namespace BattleCitySharp
             base.Start();
             var random = new Random();
             var dirIndex = random.Next(0, 3);
-            moveDir = directions[dirIndex];
-            cooldown = random.Next(1, 4);
+            moveDir = directions[dirIndex];            
             currentCooldown = cooldown;
+            var type = random.Next(typeNumber);
+            EnemyDrawer.ChangeEnemyMaterial(this, type);
         }
 
         public override void Update()
@@ -78,6 +83,14 @@ namespace BattleCitySharp
             }
 
             base.ProcessMoving();
+        }
+
+        private void DefineEnemy(int hp, (int, int) shootSpeed, int moveSpeed)
+        {
+            var random = new Random();
+            Health = new Health(hp, this);
+            cooldown = random.Next(shootSpeed.Item1, shootSpeed.Item2);
+            speed = moveSpeed;
         }
     }
 }

@@ -17,6 +17,7 @@
     <None Remove="images\bush.png" />
     <None Remove="images\empty.png" />
     <None Remove="images\enemy1.png" />
+    <None Remove="images\enemy2.png" />
     <None Remove="images\projectile.png" />
     <None Remove="images\steel.png" />
     <None Remove="images\tank1.png" />
@@ -32,6 +33,7 @@
     <Resource Include="images\brick.png" />
     <Resource Include="images\steel.png" />
     <Resource Include="images\bush.png" />
+    <Resource Include="images\enemy2.png" />
     <Resource Include="images\water.png" />
   </ItemGroup>
 
