@@ -30,15 +30,7 @@
             <TextBlock x:Name="Pos" Grid.Row="0"/>
             <TextBlock x:Name="newPos" Grid.Row="1"/>
         </Grid>
-        
-        <Canvas x:Name="Canvas1" Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black">
-            <!--<Image x:Name="Wall1" Canvas.Left="0" Width="70" Height="70" Canvas.Top="0" Source="images/wall1.png"></Image>
-            <Image x:Name="Wall2" Canvas.Left="70" Width="70" Source="images/wall2.png"></Image>
-            <Image x:Name="Wall3" Canvas.Left="140" Width="70" Source="images/wall3.png"></Image>
-            <Image x:Name="Wall4" Canvas.Left="210" Width="70" Source="images/wall4.png"></Image>
-            <Image x:Name="Wall5" Canvas.Left="280" Width="70" Source="images/wall2.png"></Image>
-            <Image x:Name="Tank1" Canvas.Left="840" Canvas.Top="70" Width="70" Source="images/tank1.png"></Image>-->
-           
-        </Canvas>
+        <Canvas x:Name="Canvas1" Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black"/>
+        <Canvas Grid.Row="1" Grid.Column="2" x:Name="Canvas2" Background="#636363" Width="100" Top="50"></Canvas>
     </Grid>
 </Window>

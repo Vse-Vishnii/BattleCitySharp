@@ -8,7 +8,7 @@ namespace BattleCitySharp
 {
     public class EnemySpawner : GameObject
     {
-        private int generateCount = 5;
+        public static int generateCount { get; } = 5;
         private Grid.Cell spawnCell;
 
         private int generated;

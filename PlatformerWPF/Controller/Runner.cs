@@ -28,6 +28,7 @@ namespace BattleCitySharp
             Core.Instantiate(new Base(), Grid.Instance[3, 3]);
             Core.Instantiate(new Generator(), Grid.Instance.EmptyCell);
             Core.Instantiate(new EnemySpawner(), Grid.Instance.EmptyCell);
+            Core.Instantiate(new UIController(), Grid.Instance.EmptyCell);
         }
     }
 }

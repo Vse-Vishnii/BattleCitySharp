@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Timers;
 using System.Windows.Input;
+using BattleCitySharp.Controller;
 
 namespace BattleCitySharp
 {
@@ -16,6 +17,7 @@ namespace BattleCitySharp
         {
             InitializeComponent();
             Drawer.SetCanvas(Canvas1);
+            UIDrawer.SetCanvas(Canvas2);
             Runner.Start();
             var timer = new Timer(10);
             timer.Enabled = true;
