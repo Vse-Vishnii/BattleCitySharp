@@ -23,7 +23,8 @@ namespace BattleCitySharp
         public void TakeDamage(int damage)
         {
             HP--;
-            if(gameObject is Player) UIController.SetHealth(HP);
+            if(gameObject is Player) 
+                UIController.SetHealth(HP);
             if (HP <= 0)
             {
                 Die();
@@ -33,7 +34,16 @@ namespace BattleCitySharp
         private void Die()
         {
             Core.Destroy(gameObject);
-            if(gameObject is Enemy) UIController.DeleteEnemy();
+            if(gameObject is Enemy)
+            {
+                UIController.DeleteEnemy();
+                GameManager.ChangeEnemyCount();
+            } 
+                
+            if(gameObject is Player || gameObject is Base)
+            {
+                GameManager.ReloadGame();
+            }
         }
     }
 }

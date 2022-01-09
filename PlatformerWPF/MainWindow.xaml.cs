@@ -16,9 +16,7 @@ namespace BattleCitySharp
         public MainWindow()
         {
             InitializeComponent();
-            Drawer.SetCanvas(Canvas1);
-            UIDrawer.SetCanvas(Canvas2);
-            Runner.Start();
+            GameManager.StartGame(Canvas1, Canvas2);
             var timer = new Timer(10);
             timer.Enabled = true;
             timer.Elapsed += new ElapsedEventHandler(OnTimeEvent);

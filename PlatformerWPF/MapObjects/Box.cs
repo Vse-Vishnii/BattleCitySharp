@@ -42,7 +42,7 @@ namespace BattleCitySharp
             if (Collider.OverlapSquare().Contains(true))
             {
                 checkedBox = false;
-                Core.Destroy(this);
+                Core.Destroy(this, false);
             }                            
         }
 

@@ -13,6 +13,7 @@ namespace BattleCitySharp
         private int damage = 2;
         private int lifeTime = 3;
         private float time;
+        private bool destroyed = false;
 
         public Bullet(int teamId)
         {            
@@ -30,11 +31,14 @@ namespace BattleCitySharp
         {
             time -= Time.DeltaTime;
             if (time <= 0)
-                Core.Destroy(this);
-            if (Collider.CanMove())
+            {
+                DestroyBullet();
+                return;
+            }                
+            if (Collider.CanMove() && !destroyed)
                 Move(Transform.MoveDirection, speed, Transform.Size / 2);
             else
-                Core.Destroy(this);
+                DestroyBullet();
         }
 
         public override void ColliderEnter(Collider collider)
@@ -46,8 +50,14 @@ namespace BattleCitySharp
             if (health != null && TeamId != gameObject.TeamId)
             {
                 health.TakeDamage(damage);
-                Core.Destroy(this);
+                DestroyBullet();
             }
-        }        
+        }
+        
+        public void DestroyBullet()
+        {
+            Core.Destroy(this);
+            destroyed = true;
+        }
     }
 }

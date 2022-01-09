@@ -24,6 +24,7 @@ namespace BattleCitySharp
         {
             generated = 0;
             currentCooldown = 0;
+            GameManager.SetStartCountOfEnemies(generateCount);
             var random = new Random();
             int x, y;
             do

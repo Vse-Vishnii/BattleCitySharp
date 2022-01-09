@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace BattleCitySharp.Controller
+namespace BattleCitySharp
 {
     public abstract class UIDrawer
     {

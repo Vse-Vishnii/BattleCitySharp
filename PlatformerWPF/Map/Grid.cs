@@ -55,11 +55,8 @@ namespace BattleCitySharp
         {
             get
             {
-                var a = new List<ObjectType>();
-                foreach(var q in map)
-                {
-                    a.Add(q.Type);
-                }
+                if (x < 0 || y < 0)
+                    return Instance.EmptyCell;
                 return map[x, y];
             }
         }
@@ -67,7 +64,7 @@ namespace BattleCitySharp
         public static void ClearCell(Vector2 position)
         {
             var x = (int)(position.X / CellSize);
-            var y = (int)(position.Y / CellSize);
+            var y = (int)(position.Y / CellSize);            
             Instance[x, y].ClearCell();
         }
     }

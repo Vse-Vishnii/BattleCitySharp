@@ -36,11 +36,11 @@ namespace BattleCitySharp
             return original;
         }
 
-        public static void Destroy(GameObject original)
+        public static void Destroy(GameObject original, bool clearCell = true)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                if(original is not MovingObject)
+                if(original is not MovingObject && clearCell)
                     Grid.ClearCell(original.Transform.Position);
                 var objects = ObjectContainer.Objects;
                 Drawer.DeleteObject(original);
