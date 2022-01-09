@@ -35,6 +35,24 @@
     <Resource Include="images\bush.png" />
     <Resource Include="images\enemy2.png" />
     <Resource Include="images\water.png" />
+    <None Remove="images\enemyIcon.png" />
+    <Resource Include="images\enemyIcon.png" />
+    <None Remove="images\one.png" />
+    <Resource Include="images\one.png" />
+    <None Remove="images\playerIcon.png" />
+    <Resource Include="images\playerIcon.png" />
+    <None Remove="images\playerNumberIcon.png" />
+    <Resource Include="images\playerNumberIcon.png" />
+    <None Remove="images\three.png" />
+    <Resource Include="images\three.png" />
+    <None Remove="images\two.png" />
+    <Resource Include="images\two.png" />
+    <None Remove="images\zero.png" />
+    <Resource Include="images\zero.png" />
+    <None Remove="images\five.png" />
+    <Resource Include="images\five.png" />
+    <None Remove="images\four.png" />
+    <Resource Include="images\four.png" />
   </ItemGroup>
 
 </Project>

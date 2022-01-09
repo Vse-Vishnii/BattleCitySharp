@@ -16,12 +16,14 @@ namespace BattleCitySharp
         {
             maxHP = max;
             HP = maxHP;
+            if(gameObject is Player) UIController.SetHealth(HP);
             this.gameObject = gameObject;
         }
 
         public void TakeDamage(int damage)
         {
             HP--;
+            if(gameObject is Player) UIController.SetHealth(HP);
             if (HP <= 0)
             {
                 Die();
@@ -31,6 +33,7 @@ namespace BattleCitySharp
         private void Die()
         {
             Core.Destroy(gameObject);
+            if(gameObject is Enemy) UIController.DeleteEnemy();
         }
     }
 }
