@@ -16,7 +16,7 @@
 
         public void TakeDamage(int damage)
         {
-            HP--;
+            HP -= damage;
             if(gameObject is Player) 
                 UIController.SetHealth(HP);
             if (HP <= 0)

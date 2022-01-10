@@ -24,6 +24,7 @@ namespace BattleCitySharp
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
         {
+            Time.SetDeltaTime();
             Runner.RunObjects();
         }
         
