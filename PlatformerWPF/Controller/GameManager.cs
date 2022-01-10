@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows.Controls;
 
 namespace BattleCitySharp
@@ -19,7 +15,7 @@ namespace BattleCitySharp
             field = _field;
             ui = _ui;
             Drawer.SetCanvas(field);
-            UIDrawer.SetCanvas(ui);
+            UIController.SetUI(ui);
             Runner.Start();
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 using System.Windows.Input;
-using BattleCitySharp.Controller;
+using BattleCitySharp.Processing;
 
 namespace BattleCitySharp
 {
@@ -24,31 +24,12 @@ namespace BattleCitySharp
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
         {
-            Time.SetDeltaTime();
-            DisplayFPS();
             Runner.RunObjects();
         }
         
         private void KeyDownEvent(object sender, KeyEventArgs e)
         {
             Runner.Inputs[0].SetKeyEventArgs(e);
-        }
-
-        private void DisplayFPS()
-        {
-            frames++;
-
-            if ((DateTime.Now - lastTime).TotalSeconds >= 1)
-            {
-                fps = frames;
-                frames = 0;
-                lastTime = DateTime.Now;
-            }
-            Dispatcher.Invoke(() => 
-            {
-                FPS.Text = fps.ToString();
-                //FPS.Text = Time.DeltaTime.ToString();
-            });
         }
     }
 }

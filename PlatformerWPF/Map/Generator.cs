@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BattleCitySharp
+namespace BattleCitySharp.Map
 {
     public class Generator : GameObject
     {
@@ -36,7 +31,7 @@ namespace BattleCitySharp
 
         private void GenerateBonus(Random random)
         {
-            var amount = random.Next(1,2);
+            var amount = random.Next(bonusCount);
             for (var i = 0; i < amount; i++)
             {
                 int x, y;

@@ -1,4 +1,5 @@
-using BattleCitySharp.Controller;
+using BattleCitySharp.UI;
+using System.Windows.Controls;
 
 namespace BattleCitySharp
 {
@@ -21,6 +22,12 @@ namespace BattleCitySharp
         {
             UIDrawer.UpdatePlayerInfo(hp);
         }
+
+        internal static void SetUI(Canvas ui)
+        {
+            UIDrawer.SetCanvas(ui);
+        }
+
         public static void DeleteEnemy()
         {
             UIDrawer.DeleteObject();

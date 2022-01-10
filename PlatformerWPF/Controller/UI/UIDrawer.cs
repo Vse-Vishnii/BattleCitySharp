@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace BattleCitySharp
+namespace BattleCitySharp.UI
 {
     public abstract class UIDrawer
     {
@@ -30,11 +29,6 @@ namespace BattleCitySharp
         public static void DeleteObject()
         {
             Application.Current.Dispatcher.Invoke(() => { canvas.Children.Remove(enemies.Pop()); });
-        }
-
-        public static void CreateImage()
-        {
-            //enemies.Add(img);
         }
 
         public static void CreateEnemiesInfo(int enemyCount)

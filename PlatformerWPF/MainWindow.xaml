@@ -21,7 +21,6 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="170"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="FPS" Grid.Row="0" Grid.Column="0"/>
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"></RowDefinition>
