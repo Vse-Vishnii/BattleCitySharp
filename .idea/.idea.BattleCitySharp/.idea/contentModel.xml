@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\sakan\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\sakan\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_BattleCitySharp.-10788258.00" t="ExcludeRecursive" />
+    <e p="D:\RiderProjects\BattleCitySharp" t="IncludeFlat">
+      <e p="BattleCitySharp.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="PlatformerWPF" t="IncludeRecursive">
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="AssemblyInfo.cs" t="Include" />
+        <e p="BattleCitySharp.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controller" t="Include">
+          <e p="BoxDrawer.cs" t="Include" />
+          <e p="Core.cs" t="Include" />
+          <e p="Drawer.cs" t="Include" />
+          <e p="EnemyDrawer.cs" t="Include" />
+          <e p="Input.cs" t="Include" />
+          <e p="ObjectContainer.cs" t="Include" />
+          <e p="ObjectMaterial.cs" t="Include" />
+          <e p="Runner.cs" t="Include" />
+          <e p="Time.cs" t="Include" />
+          <e p="UIDrawer.cs" t="Include" />
+        </e>
+        <e p="images" t="Include">
+          <e p="base.png" t="Include" />
+          <e p="bonus.png" t="Include" />
+          <e p="brick.png" t="Include" />
+          <e p="bush.png" t="Include" />
+          <e p="enemy1.png" t="Include" />
+          <e p="enemy2.png" t="Include" />
+          <e p="enemyIcon.png" t="Include" />
+          <e p="five.png" t="Include" />
+          <e p="four.png" t="Include" />
+          <e p="one.png" t="Include" />
+          <e p="playerIcon.png" t="Include" />
+          <e p="playerNumberIcon.png" t="Include" />
+          <e p="projectile.png" t="Include" />
+          <e p="steel.png" t="Include" />
+          <e p="tank1.png" t="Include" />
+          <e p="three.png" t="Include" />
+          <e p="two.png" t="Include" />
+          <e p="water.png" t="Include" />
+          <e p="zero.png" t="Include" />
+        </e>
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="Map" t="Include">
+          <e p="GameManager.cs" t="Include" />
+          <e p="Generator.cs" t="Include" />
+          <e p="Grid.cs" t="Include" />
+        </e>
+        <e p="MapObjects" t="Include">
+          <e p="AidKit.cs" t="Include" />
+          <e p="Base.cs" t="Include" />
+          <e p="Bonus.cs" t="Include" />
+          <e p="Box.cs" t="Include" />
+          <e p="Bullet.cs" t="Include" />
+          <e p="Components" t="Include">
+            <e p="Collider.cs" t="Include" />
+            <e p="ColliderShape.cs" t="Include" />
+            <e p="Health.cs" t="Include" />
+            <e p="Transform.cs" t="Include" />
+          </e>
+          <e p="Enemy.cs" t="Include" />
+          <e p="EnemySpawner.cs" t="Include" />
+          <e p="Enums" t="Include">
+            <e p="Direction.cs" t="Include" />
+            <e p="ObjectType.cs" t="Include" />
+          </e>
+          <e p="GameObject.cs" t="Include" />
+          <e p="MovingObject.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+          <e p="Tank.cs" t="Include" />
+          <e p="UIController.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0-windows" t="Include">
+              <e p="App.g.cs" t="Include" />
+              <e p="BattleCitySharp.AssemblyInfo.cs" t="Include" />
+              <e p="MainWindow.g.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+    </e>
+  </component>
+</project>

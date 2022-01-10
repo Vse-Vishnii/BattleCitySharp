@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApplication1"
+        xmlns:local="clr-namespace:BattleCitySharp"
         mc:Ignorable="d"
         Title="MainWindow" ResizeMode="NoResize" Height="1000" Width="1150"
+        KeyDown="KeyDownEvent"
 >
     <Grid Background="#757575">
         
@@ -14,24 +15,21 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="170"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Content="Жми" Click="Button_Click" ></Button>
-        <Canvas x:Name="Canvas1" Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black">
-                
-                
-                
-            <Image x:Name="Wall1" Canvas.Left="0" Width="70" Height="70" Canvas.Top="0" Source="Resourses/wall1.png"></Image>
-            <Image x:Name="Wall2" Canvas.Left="70" Width="70" Source="Resourses/wall2.png"></Image>
-            <Image x:Name="Wall3" Canvas.Left="140" Width="70" Source="Resourses/wall3.png"></Image>
-            <Image x:Name="Wall4" Canvas.Left="210" Width="70" Source="Resourses/wall4.png"></Image>
-            <Image x:Name="Wall5" Canvas.Left="280" Width="70" Source="Resourses/wall2.png"></Image>
-            <Image x:Name="Tank1" Canvas.Left="840" Canvas.Top="70" Width="70" Source="Resourses/tank1.png"></Image>
-           
-        </Canvas>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="Pos" Grid.Row="0"/>
+            <TextBlock x:Name="newPos" Grid.Row="1"/>
+        </Grid>
+        <Canvas x:Name="Canvas1" Grid.Row="1" Grid.Column="1" Height="910" Width="910" Background="Black"/>
+        <Canvas Grid.Row="1" Grid.Column="2" x:Name="Canvas2" Background="#636363" Width="100" Top="50"></Canvas>
     </Grid>
 </Window>

@@ -6,14 +6,53 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>BattleCitySharp</AssemblyName>
     <RootNamespace>BattleCitySharp</RootNamespace>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="images\wall1.png" />
+    <None Remove="images\base.png" />
+    <None Remove="images\bonus.png" />
+    <None Remove="images\brick.png" />
+    <None Remove="images\bush.png" />
+    <None Remove="images\empty.png" />
+    <None Remove="images\enemy1.png" />
+    <None Remove="images\enemy2.png" />
+    <None Remove="images\projectile.png" />
+    <None Remove="images\steel.png" />
+    <None Remove="images\tank1.png" />
+    <None Remove="images\water.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\wall1.png" />
+    <Resource Include="images\base.png" />
+    <Resource Include="images\bonus.png" />
+    <Resource Include="images\enemy1.png" />
+    <Resource Include="images\projectile.png" />
+    <Resource Include="images\tank1.png" />
+    <Resource Include="images\brick.png" />
+    <Resource Include="images\steel.png" />
+    <Resource Include="images\bush.png" />
+    <Resource Include="images\enemy2.png" />
+    <Resource Include="images\water.png" />
+    <None Remove="images\enemyIcon.png" />
+    <Resource Include="images\enemyIcon.png" />
+    <None Remove="images\one.png" />
+    <Resource Include="images\one.png" />
+    <None Remove="images\playerIcon.png" />
+    <Resource Include="images\playerIcon.png" />
+    <None Remove="images\playerNumberIcon.png" />
+    <Resource Include="images\playerNumberIcon.png" />
+    <None Remove="images\three.png" />
+    <Resource Include="images\three.png" />
+    <None Remove="images\two.png" />
+    <Resource Include="images\two.png" />
+    <None Remove="images\zero.png" />
+    <Resource Include="images\zero.png" />
+    <None Remove="images\five.png" />
+    <Resource Include="images\five.png" />
+    <None Remove="images\four.png" />
+    <Resource Include="images\four.png" />
   </ItemGroup>
 
 </Project>
